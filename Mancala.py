@@ -27,12 +27,14 @@ class Mancala:
 
     def print_board(self):
         """
-        Contains no parameters. Returns specific formatted board information.
+        Contains no parameters. Returns specific formatted board information, such as the status of each
+        player, their turns, and the data of the mancala board array itself.
         """
         return self._mancala_board
 
     def grab_seeds(self, pit_index):
         """
+        Takes as a parameter the indexed value of the Mancala Board for the specified Pit the user chooses.
         Gathers the amount of seeds from the specified indexed pit. Returns the amount of seeds from the pit.
         """
         # Grab the amount of seeds from the array position that contains pits.
@@ -67,7 +69,7 @@ class Mancala:
         """
         pass
 
-    def player_move(self, player_number, pit_number):
+    def play_game(self, player_number, pit_number):
         """
         Player moves seeds across the board.
         """
