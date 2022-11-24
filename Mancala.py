@@ -97,28 +97,27 @@ class Mancala:
         # Checks and compares index 0 and 7 (Mancala stores for Player 1 and Player 2) to see who has larger amount
         # Also checks if one of the player rows is empty.
         pass
-#
-#
-# class Player(Mancala):
-#     """
-#     A subclass of the Mancala class. Contains information about a player of the Mancala board.
-#     """
-#     def __init__(self, name):
-#         super().__init__()
-#         self._name = name
-#
-#
-#     def get_player_name(self):
-#         """
-#         Returns the name of a Mancala Player.
-#         """
-#         return self._name
-#
-#     def
+
+
+class Player(Mancala):
+    """
+    A subclass of the Mancala class. Contains information about a player of the Mancala board.
+    """
+    def __init__(self, name):
+        super().__init__()
+        self._name = name
+
+
+    def get_player_name(self):
+        """
+        Returns the name of a Mancala Player.
+        """
+        return self._name
+
 
 
 game = Mancala()
-player_1 = game.create_player('Ari')
-player_2 = game.create_player('Milky')
+player_1 = game.create_players('Ari')
+player_2 = game.create_players('Milky')
 print(player_1.get_player_name())
 print(player_2.get_player_name())
