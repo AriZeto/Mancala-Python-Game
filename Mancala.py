@@ -13,8 +13,8 @@ class Mancala:
         # Index 1 through 6 represents Player 1 Seeds, Index 8 through 13 represents Player 2 Seeds
         # Each pit contains four seeds
         self._mancala_board = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4]
-        self._player_1_store_index = 0
-        self._player_2_store_index = 7
+        self._player_1_store_index = self._mancala_board[0]
+        self._player_2_store_index = self._mancala_board[7]
 
     def create_players(self, name):
         """
@@ -27,10 +27,19 @@ class Mancala:
 
     def print_board(self):
         """
-        Contains no parameters. Returns specific formatted board information, such as the status of each
+        Contains no parameters. Prints specific formatted board information, such as the status of each
         player, their turns, and the data of the mancala board array itself.
         """
-        return self._mancala_board
+        print("Player 1: ")
+        print("\nNumber of seeds in Player 1's Store: " + str(self._player_1_store_index))
+        print("\nPlayer 1 contains seeds in pits index 1 through index 7. Their current pits look like...:")
+        print('\n' + str(self._mancala_board[1:7]))
+
+        print("\nPlayer 2: ")
+        print("\nNumber of seeds in Player 2's Store: " + str(self._player_2_store_index))
+        print("\nPlayer 1 contains seeds in pits index 8 through index 13. Their current pits look like...:")
+        print('\n' + str(self._mancala_board[8:13]))
+        # return self._mancala_board
 
     def grab_seeds(self, pit_index):
         """
@@ -91,6 +100,10 @@ class Mancala:
                 pit_index = pit_number + 7
                 num_of_seeds = self._mancala_board[pit_number + 7]
 
+                # Gather the number of seeds, and distribute them across each move
+                grab_seed_amount = self.grab_seeds()
+                self.move_seed_per_pit()
+
 
     def return_winner(self):
         """
@@ -121,5 +134,7 @@ class Player(Mancala):
 game = Mancala()
 player_1 = game.create_players('Ari')
 player_2 = game.create_players('Milky')
-print(player_1.get_player_name())
-print(player_2.get_player_name())
+# print(player_1.get_player_name())
+# print(player_2.get_player_name())
+
+print(game.print_board())
