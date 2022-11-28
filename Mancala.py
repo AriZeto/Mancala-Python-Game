@@ -12,7 +12,7 @@ class Mancala:
         # Index 0 represents Player 1 Store, Index 7 represents Player 2 Store
         # Index 1 through 6 represents Player 1 Seeds, Index 8 through 13 represents Player 2 Seeds
         # Each pit contains four seeds
-        self._mancala_board = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4]
+        self._mancala_board = [0, 1, 0, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4]
         self._player_1_store_index = self._mancala_board[0]
         self._player_2_store_index = self._mancala_board[7]
         # Player names
@@ -82,16 +82,17 @@ class Mancala:
             # Add seed to indexed pits
             self._mancala_board[pit_index] += 1
 
+        return pit_index
 
-    def steal_player_seeds(self, pit_index):
+    def steal_player_seeds(self, pit_index, store_index):
         """
 
         :param pit_index:
         :return:
         """
         if self._mancala_board[pit_index] == 0:
-            if self._mancala_board[pit_index-7] != 0:
-                self._mancala_board[pit_index] = self._mancala_board[pit_index-7]
+            self._mancala_board[store_index] = self._mancala_board[pit_index+7]
+            self._mancala_board[pit_index+7] = 0
 
     def play_game(self, player_number, pit_number):
         """
@@ -109,9 +110,11 @@ class Mancala:
 
                 # Gather the number of seeds, and distribute them across each move
                 grab_seed_amount = self.grab_seeds(pit_index)
-                self.move_seed_per_pit(pit_index)
+                pit_index = self.move_seed_per_pit(pit_index)
 
                 # If Player 1 lands on empty space of their own and opposite (Player 2) pit contains seeds
+                self.steal_player_seeds(pit_index, self._player_1_store_index)
+
 
             # Player 2
             if player_number == 2:
@@ -124,11 +127,13 @@ class Mancala:
                 self.move_seed_per_pit(pit_index)
 
                 # If Player 2 lands on empty space of their own and opposite (Player 1) pit contains seeds
+                pit_index = self.steal_player_seeds(pit_index, self._player_2_store_index)
 
             # Prints the updated Mancala game
             print("The Mancala board now looks like this.")
             print(self._mancala_board[0], ' ', self._mancala_board[1:7])
             print('   ', self._mancala_board[8:14], ' ', self._mancala_board[7])
+
 
     def if_row_zero(self, list_slice):
         """
@@ -181,7 +186,7 @@ p1 = game.create_players('Ari')
 p2 = game.create_players('Milky')
 # print(p1.get_player_name())     # Prints Ari
 # print(p2.get_player_name())     # Prints Milky
-game.play_game(1, 4)            # Player 1 takes a turn, prints board array in unique design
+game.play_game(1, 1)            # Player 1 takes a turn, prints board array in unique design
 # game.play_game(2, 1)            # Player 2 takes a turn, prints board array in unique design
 # print(game.return_winner())   # Game has not ended
 # game.play_game(1, 2)
@@ -195,4 +200,4 @@ game.play_game(1, 4)            # Player 1 takes a turn, prints board array in u
 # game.play_game(2, 3)
 # game.play_game(2, 2)
 # game.play_game(2, 1)
-# print(game.print_board())
+print(game.print_board())
