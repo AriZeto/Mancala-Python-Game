@@ -12,9 +12,11 @@ class Mancala:
         # Index 0 represents Player 1 Store, Index 7 represents Player 2 Store
         # Index 1 through 6 represents Player 1 Seeds, Index 8 through 13 represents Player 2 Seeds
         # Each pit contains four seeds
-        self._mancala_board = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4]
+        self._mancala_board = [2, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0]
         self._player_1_store_index = self._mancala_board[0]
         self._player_2_store_index = self._mancala_board[7]
+        self._player_1 = ''
+        self._player_2 = ''
 
     def create_players(self, name):
         """
@@ -23,6 +25,13 @@ class Mancala:
 
         # Create Player Object, Return Player Object
         player_char = Player(name)
+
+        if self._player_1 == '':
+            self._player_1 = name
+
+        elif self._player_2 == '':
+            self._player_2 = name
+
         return player_char
 
     def print_board(self):
@@ -126,9 +135,9 @@ class Mancala:
         # if self._mancala_board[1:7] and self._mancala_board[8:14] == 0:
         if self.if_row_zero(self._mancala_board[1:7]) and self.if_row_zero(self._mancala_board[8:14]):
             if self._player_1_store_index > self._player_2_store_index:
-                return "Winner is Player 1: " + "ENTER THE PLAYER NAME HERE"
+                return "Winner is Player 1: " + self._player_1
             elif self._player_1_store_index < self._player_2_store_index:
-                return "Winner is Player 2: " + "ENTER THE PLAYER NAME HERE"
+                return "Winner is Player 2: " + self._player_2
             elif self._player_1_store_index == self._player_2_store_index:
                 return "It's a tie!"
         else:
