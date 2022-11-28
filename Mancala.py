@@ -39,15 +39,15 @@ class Mancala:
         Contains no parameters. Prints specific formatted board information, such as the status of each
         player, their turns, and the data of the mancala board array itself.
         """
-        print("Player 1: ")
-        print("\nNumber of seeds in Player 1's Store: " + str(self._player_1_store_index))
-        print("\nPlayer 1 contains seeds in pits 1 through 6 (index 1 - 6). Their current pits look like...:")
-        print('\n' + str(self._mancala_board[1:7]))
+        print("\nPlayer 1: ")
+        print("Number of seeds in Player 1's Store: " + str(self._player_1_store_index))
+        print("Player 1 Pits..:")
+        print(str(self._mancala_board[1:7]))
 
         print("\nPlayer 2: ")
-        print("\nNumber of seeds in Player 2's Store: " + str(self._player_2_store_index))
-        print("\nPlayer 1 contains seeds in pits 1 through 6 (index 8 through 13). Their current pits look like...:")
-        print('\n' + str(self._mancala_board[8:14]))
+        print("Number of seeds in Player 2's Store: " + str(self._player_2_store_index))
+        print("Player 2 Pits:")
+        print(str(self._mancala_board[8:14]))
 
         # Return the winner
         return '\n' + self.return_winner()
