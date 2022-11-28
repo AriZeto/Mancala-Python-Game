@@ -9,12 +9,14 @@ class Mancala:
     information regarding player names.
     """
     def __init__(self):
-        # Index 0 represents Player 1 Store, Index 7 represents Player 2 Store
-        # Index 1 through 6 represents Player 1 Seeds, Index 8 through 13 represents Player 2 Seeds
+        # Index 6 represents Player 1 Store, Index 13 represents Player 2 Store
+        # Index 0 through 5 represents Player 1 Seeds, Index 7 through 12 represents Player 2 Seeds
         # Each pit contains four seeds
-        self._mancala_board = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4]
-        self._player_1_store_index = self._mancala_board[0]
-        self._player_2_store_index = self._mancala_board[7]
+        self._mancala_board = [4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0]
+        self._player_1_store_index = 6
+        self._player_2_store_index = 13
+        self._player_1_store_value = self._mancala_board[6]
+        self._player_2_store_value = self._mancala_board[13]
         # Player names
         self._player_1 = ''
         self._player_2 = ''
@@ -41,15 +43,15 @@ class Mancala:
         """
         # Returns the status of Player 1
         print("\nPlayer 1: ")
-        print("Number of seeds in Player 1's Store: " + str(self._player_1_store_index))
+        print("Number of seeds in Player 1's Store: " + str(self._player_1_store_value))
         print("Player 1 Pits..:")
-        print(str(self._mancala_board[1:7]))
+        print(str(self._mancala_board[0:6]))
 
         # Returns the Status of Player 2
         print("\nPlayer 2: ")
-        print("Number of seeds in Player 2's Store: " + str(self._player_2_store_index))
+        print("Number of seeds in Player 2's Store: " + str(self._player_2_store_value))
         print("Player 2 Pits:")
-        print(str(self._mancala_board[8:14]))
+        print(str(self._mancala_board[7:13]))
 
         # Return the winner
         return '\n' + self.return_winner()
@@ -105,11 +107,11 @@ class Mancala:
         return store_index
 
 
-    def special_rule_1(self, player_number, pit_index, score_index):
+    def special_rule_1(self, player_number):
         """
         When the last seed in the hand lands in your own store, take another turn.
         """
-        print(player_number + " takes another turn")
+        print("\nPlayer " + str(player_number) + " takes another turn")
 
 
     def play_game(self, player_number, pit_index):
@@ -129,17 +131,18 @@ class Mancala:
                 # pit_index = pit_index
                 # MAY NOT NEED #
 
+                pit_index -= 1
                 num_of_seeds = self._mancala_board[pit_index]
 
                 # Distribute them across each move
-                pit_index = self.move_seed_per_pit(pit_index, self._player_1_store_index)
+                landed_pit_index = self.move_seed_per_pit(pit_index, self._player_1_store_index)
 
                 # If Player 1 lands on empty space of their own and opposite (Player 2) pit contains seeds
-                self.steal_player_seeds(pit_index, self._player_1_store_index)
+                self.steal_player_seeds(landed_pit_index, self._player_1_store_index)
 
                 # Apply special rule number 1
-                if self._mancala_board[pit_index] == 1 and self._mancala_board[self._player_1_store_index]:
-                    self.special_rule_1(player_number, pit_index, self._player_1_store_index)
+                if self._mancala_board[pit_index] == 1 and self._player_1_store_index == landed_pit_index:
+                    self.special_rule_1(player_number)
 
             # Player 2
             if player_number == 2:
@@ -147,21 +150,20 @@ class Mancala:
                 pit_index = pit_index + 7
                 num_of_seeds = self._mancala_board[pit_index + 7]
 
-                # Gather the number of seeds, and distribute them across each move
-                grab_seed_amount = self.grab_seeds(pit_index)
-                self.move_seed_per_pit(pit_index, self._player_2_store_index)
+                # Distribute them across each move
+                landed_pit_index = self.move_seed_per_pit(pit_index, self._player_2_store_index)
 
                 # If Player 2 lands on empty space of their own and opposite (Player 1) pit contains seeds
-                pit_index = self.steal_player_seeds(pit_index, self._player_2_store_index)
+                self.steal_player_seeds(landed_pit_index, self._player_2_store_index)
 
                 # Apply special rule number 1
-                if self._mancala_board[pit_index] == 1 and self._mancala_board[self._player_2_store_index]:
-                    self.special_rule_1(player_number, pit_index, self._player_2_store_index)
+                if self._mancala_board[pit_index] == 1 and self._player_2_store_index == landed_pit_index:
+                    self.special_rule_1(player_number)
 
             # Prints the updated Mancala game
             print("The Mancala board now looks like this.")
-            print(self._mancala_board[0], ' ', self._mancala_board[1:7])
-            print('   ', self._mancala_board[8:14], ' ', self._mancala_board[7])
+            print(self._player_1_store_value, ' ', self._mancala_board[0:6])
+            print('   ', self._mancala_board[7:13], ' ', self._player_2_store_value)
 
         elif pit_index >= 6 or pit_index <= 0:
             return "Invalid number for pit index."
@@ -189,11 +191,11 @@ class Mancala:
         # Also checks if one of the player rows is empty.
         # if self._mancala_board[1:7] and self._mancala_board[8:14] == 0:
         if self.if_row_zero(self._mancala_board[1:7]) and self.if_row_zero(self._mancala_board[8:14]):
-            if self._player_1_store_index > self._player_2_store_index:
+            if self._player_1_store_value > self._player_2_store_value:
                 return "Winner is Player 1: " + self._player_1
-            elif self._player_1_store_index < self._player_2_store_index:
+            elif self._player_1_store_value < self._player_2_store_value:
                 return "Winner is Player 2: " + self._player_2
-            elif self._player_1_store_index == self._player_2_store_index:
+            elif self._player_1_store_value == self._player_2_store_value:
                 return "It's a tie!"
         else:
             return "Game has not ended."
