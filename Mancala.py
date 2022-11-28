@@ -12,6 +12,8 @@ class Mancala:
         # Index 6 represents Player 1 Store, Index 13 represents Player 2 Store
         # Index 0 through 5 represents Player 1 Seeds, Index 7 through 12 represents Player 2 Seeds
         # Each pit contains four seeds
+
+        ########### INDEX SPORE FOR PLAYER 2 NOT WORKING #####################
         self._mancala_board = [4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0]
         self._player_1_store_index = 6
         self._player_2_store_index = 13
@@ -76,7 +78,7 @@ class Mancala:
         # Grabs the amount of seeds from a pit.
         amount_of_seeds = self.grab_seeds(pit_index)
 
-        print(opponent_store_index)
+        # print(opponent_store_index)
         while amount_of_seeds > 0:
 
             if pit_index >= 13:
@@ -94,9 +96,9 @@ class Mancala:
                 if amount_of_seeds == 0 and self._mancala_board[pit_index] == 0:
                     # Add seed to indexed pits
                     self._mancala_board[store_index] += 1
-                    print("store index value", self._mancala_board[store_index])
+                    # print("store index value", self._mancala_board[store_index])
                     self.steal_player_seeds(pit_index, store_index)
-                    print(self._mancala_board[store_index])
+                    # print(self._mancala_board[store_index])
                 else:
                     # Add seed to indexed pits
                     self._mancala_board[pit_index] += 1
@@ -111,8 +113,8 @@ class Mancala:
         :param pit_index:
         :return:
         """
-        print("meow", self._mancala_board[pit_index+7])
-        print(self._mancala_board[store_index])
+        # print("meow", self._mancala_board[pit_index+7])
+        # print(self._mancala_board[store_index])
         self._mancala_board[store_index] += self._mancala_board[pit_index+7]
         self._mancala_board[pit_index+7] = 0
 
@@ -120,28 +122,28 @@ class Mancala:
         return store_index
 
 
-    def special_rule_1(self, player_number):
+    def take_another_turn(self, player_number):
         """
         When the last seed in the hand lands in your own store, take another turn.
         """
         print("\nPlayer " + str(player_number) + " gets to take another turn!")
 
 
-    def special_rule_2(self, player_number, pit_index, store_index):
-        """
-        When the last seed in your hand lands in one of your own empty pits, get to keep all the seeds in your opponents
-        opposite pit. The captured seeds as well as the last seed from your hand gets to go into your player store.
-        :return:
-        """
-        # NOT SURE IF THIS IS CORRECT ! ! ! ! ! ! ! ! !
-        if self._mancala_board[pit_index] == 1 and self._mancala_board[pit_index + 1] == 0:
-            if self._mancala_board[pit_index + 7] != 0:
-                grab_opposite_seeds = self.grab_seeds(pit_index + 7)
-                grab_player_seed = self.grab_seeds(pit_index)
-
-                # Add your final seed and opposite pit/other player seeds to your store.
-                self._mancala_board[store_index] += grab_opposite_seeds + grab_player_seed
-                print("\n Player" + {player_number} + " Just stole seeds from your pit!")
+    # def special_rule_2(self, player_number, pit_index, store_index):
+    #     """
+    #     When the last seed in your hand lands in one of your own empty pits, get to keep all the seeds in your opponents
+    #     opposite pit. The captured seeds as well as the last seed from your hand gets to go into your player store.
+    #     :return:
+    #     """
+    #     # NOT SURE IF THIS IS CORRECT ! ! ! ! ! ! ! ! !
+    #     if self._mancala_board[pit_index] == 1 and self._mancala_board[pit_index + 1] == 0:
+    #         if self._mancala_board[pit_index + 7] != 0:
+    #             grab_opposite_seeds = self.grab_seeds(pit_index + 7)
+    #             grab_player_seed = self.grab_seeds(pit_index)
+    #
+    #             # Add your final seed and opposite pit/other player seeds to your store.
+    #             self._mancala_board[store_index] += grab_opposite_seeds + grab_player_seed
+    #             print("\n Player" + {player_number} + " Just stole seeds from your pit!")
 
 
     def set_indexed_pit_to_0(self, player_number):
@@ -190,9 +192,9 @@ class Mancala:
                 # # Apply special rule number 1
                 # if self._mancala_board[landed_pit_index] == 1 and self._player_1_store_index == landed_pit_index:
                 #     self.special_rule_1(player_number)
-
-                # SPECIAL RULE 2 #
-                self.special_rule_2(player_number, pit_index, self._player_1_store_index)
+                #
+                # # SPECIAL RULE 2 #
+                # self.special_rule_2(player_number, pit_index, self._player_1_store_index)
 
             # Player 2
             if player_number == 2:
@@ -209,9 +211,9 @@ class Mancala:
                 # # Apply special rule number 1
                 # if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
                 #     self.special_rule_1(player_number)
-
-                # SPECIAL RULE 2 #
-                self.special_rule_2(player_number, pit_index, self._player_2_store_index)
+                #
+                # # SPECIAL RULE 2 #
+                # self.special_rule_2(player_number, pit_index, self._player_2_store_index)
 
             # Prints the updated Mancala game
             print("\nThe Mancala board now looks like this.")
@@ -221,13 +223,14 @@ class Mancala:
             if player_number == 1:
                 # Apply special rule number 1
                 if self._mancala_board[landed_pit_index] == 1 and self._player_1_store_index == landed_pit_index:
-                    self.special_rule_1(player_number)
+                    self.take_another_turn(player_number)
 
             elif player_number == 2:
                 # Apply special rule number 1
                 if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
-                    self.special_rule_1(player_number)
+                    self.take_another_turn(player_number)
 
+        ##### NEEDS TO BE FIXED. IF PIT IS 0 IT DOES NOT WORK #########
         elif pit_index >= 6 or pit_index <= 0:
             print("\nInvalid number for pit index.")
 
@@ -267,7 +270,7 @@ class Mancala:
             elif self._mancala_board[self._player_1_store_index] == self._mancala_board[self._player_2_store_index]:
                 return "\nIt's a tie!"
         else:
-            return "Game has not ended."
+            return "\nGame has not ended."
 
 
 class Player(Mancala):
@@ -298,6 +301,8 @@ game.play_game(1, 2)
 game.play_game(1, 3)
 game.play_game(1, 4)
 game.play_game(1, 5)
-game.play_game(1, 6)
-# game.play_game(2, 4)            # BUSTED
+game.play_game(1, 6)          # If this runs, player 1 wins
+
+
+# game.play_game(1, -1)
 # print(game.print_board())
