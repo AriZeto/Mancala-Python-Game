@@ -102,6 +102,12 @@ class Mancala:
         # Return something here
         return store_index
 
+    def special_rule_1(self, player_number, pit_index, score_index):
+        """
+        When the last seed in the hand lands in your own store, take another turn.
+        """
+        print(player_number + " takes another turn")
+
     def play_game(self, player_number, pit_index):
         """
         Player moves seeds across the board.
@@ -128,6 +134,9 @@ class Mancala:
                 # If Player 1 lands on empty space of their own and opposite (Player 2) pit contains seeds
                 self.steal_player_seeds(pit_index, self._player_1_store_index)
 
+                # Apply special rule number 1
+                if self._mancala_board[pit_index] == 1 and self._mancala_board[self._player_1_store_index]:
+                    self.special_rule_1(player_number, pit_index, self._player_1_store_index)
 
             # Player 2
             if player_number == 2:
@@ -142,10 +151,17 @@ class Mancala:
                 # If Player 2 lands on empty space of their own and opposite (Player 1) pit contains seeds
                 pit_index = self.steal_player_seeds(pit_index, self._player_2_store_index)
 
+                # Apply special rule number 1
+                if self._mancala_board[pit_index] == 1 and self._mancala_board[self._player_2_store_index]:
+                    self.special_rule_1(player_number, pit_index, self._player_2_store_index)
+
             # Prints the updated Mancala game
             print("The Mancala board now looks like this.")
             print(self._mancala_board[0], ' ', self._mancala_board[1:7])
             print('   ', self._mancala_board[8:14], ' ', self._mancala_board[7])
+
+        elif pit_index >= 6 or pit_index <= 0:
+            return "Invalid number for pit index."
 
         # RETURN WINNER????????
         # self.return_winner()
