@@ -129,28 +129,27 @@ class Mancala:
                 print("\n Player" + {player_number} + " Just stole seeds from your pit!")
 
 
-    def set_indexed_pit_to_0(self, pit_index):
+    def set_indexed_pit_to_0(self, player_number):
         """
         Sets the chosen pit to zero after selecting it to move across the board.
         :param pit_index:
         :return:
         """
-        print("\nYou may not select this pit!")
+        print(f"\nThis pit is empty! Choose a different pit, Player {player_number}.")
 
     def play_game(self, player_number, pit_index):
         """
         Player moves seeds across the board.
         """
+
+        # If Pit contains no seeds
+        if self._mancala_board[pit_index] == 0:
+            return self.set_indexed_pit_to_0(player_number)
+
         print("\nPlayer " + str(player_number) + " takes a turn")
 
         # Gather the number of seeds
         if pit_index >= 1 and pit_index <= 6:
-
-            # If Pit contains no seeds
-            if self._mancala_board[pit_index] == 0:
-                return self.set_indexed_pit_to_0(pit_index)
-            # elif self._mancala_board[pit_index] != 0:
-            #     print(self._mancala_board[pit_index])
 
             # Player 1
             if player_number == 1:
