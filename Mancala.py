@@ -1,6 +1,6 @@
 # Author: Ari Zeto
 # GitHub username: AriZeto
-# Date: 11/27/2022
+# Date: 11/28/2022
 # Description: Fill in Later.
 
 class Mancala:
@@ -86,9 +86,10 @@ class Mancala:
             else:
                 pit_index += 1
 
-
+            ####### FIX THIS ##############
             if pit_index == opponent_store_index:
                 print(pit_index)
+                print('we are stealing your prints (test).')
             else:
                 # Decrease amount of seeds by one per each pit
                 amount_of_seeds -= 1
