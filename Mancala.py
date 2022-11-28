@@ -101,6 +101,8 @@ class Mancala:
 
         # Gather the number of seeds
         if pit_number >= 1 and pit_number <= 6:
+
+            # Player 1
             if player_number == 1:
                 pit_index = pit_number
                 num_of_seeds = self._mancala_board[pit_number]
@@ -109,8 +111,9 @@ class Mancala:
                 grab_seed_amount = self.grab_seeds(pit_index)
                 self.move_seed_per_pit(pit_index)
 
-                # self._mancala_board[pit_index + num_of_seeds]
+                # If Player 1 lands on empty space of their own and opposite (Player 2) pit contains seeds
 
+            # Player 2
             if player_number == 2:
                 # Add seven to get appropriate pit number
                 pit_index = pit_number + 7
@@ -119,6 +122,8 @@ class Mancala:
                 # Gather the number of seeds, and distribute them across each move
                 grab_seed_amount = self.grab_seeds(pit_index)
                 self.move_seed_per_pit(pit_index)
+
+                # If Player 2 lands on empty space of their own and opposite (Player 1) pit contains seeds
 
             # Prints the updated Mancala game
             print("The Mancala board now looks like this.")
