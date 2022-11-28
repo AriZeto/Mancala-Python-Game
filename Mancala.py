@@ -137,19 +137,26 @@ class Mancala:
         """
         print(f"\nThis pit is empty! Choose a different pit, Player {player_number}.")
 
+    def skip_opponent_store(self):
+        """
+        Skips the opponents turn when passing.
+        :return:
+        """
+        # FILL THIS IN!
+
     def play_game(self, player_number, pit_index):
         """
         Player moves seeds across the board.
         """
 
         # If Pit contains no seeds
-        if self._mancala_board[pit_index] == 0:
+        if self._mancala_board[pit_index-1] == 0:
             return self.set_indexed_pit_to_0(player_number)
-
-        print("\nPlayer " + str(player_number) + " takes a turn")
 
         # Gather the number of seeds
         if pit_index >= 1 and pit_index <= 6:
+
+            print("\nPlayer " + str(player_number) + " takes a turn.")
 
             # Player 1
             if player_number == 1:
@@ -205,10 +212,12 @@ class Mancala:
                     self.special_rule_1(player_number)
 
         elif pit_index >= 6 or pit_index <= 0:
-            return "Invalid number for pit index."
+            print("\nInvalid number for pit index.")
 
-        # RETURN WINNER????????
-        # self.return_winner()
+        ### FIX THIS ###
+        # # RETURN WINNER????????
+        # return self.return_winner()
+        ### FIX THIS ###
 
 
     def if_row_zero(self, list_slice):
@@ -262,19 +271,12 @@ p1 = game.create_players('Ari')
 p2 = game.create_players('Milky')
 # print(p1.get_player_name())     # Prints Ari
 # print(p2.get_player_name())     # Prints Milky
-game.play_game(1, 3)            # Player 1 takes a turn, prints board array in unique design
+game.play_game(1, 1)            # Player 1 takes a turn, gets another turn since landed in store
+game.play_game(1, 1)            # Player 1 cannot choose this pit, as it is empty now
 game.play_game(1, 2)
-# game.play_game(2, 1)            # Player 2 takes a turn, prints board array in unique design
-# print(game.return_winner())   # Game has not ended
-# game.play_game(1, 2)
-# game.play_game(1, 3)
-# game.play_game(1, 4)
-# game.play_game(1, 5)
+game.play_game(1, 3)
+game.play_game(1, 4)
+game.play_game(1, 5)
 # game.play_game(1, 6)
-# game.play_game(2, 6)
-# game.play_game(2, 5)
-# game.play_game(2, 4)
-# game.play_game(2, 3)
-# game.play_game(2, 2)
-# game.play_game(2, 1)
+# game.play_game(2, 4)            # BUSTED
 # print(game.print_board())
