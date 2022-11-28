@@ -69,7 +69,7 @@ class Mancala:
         return grab_seed_from_pit
 
 
-    def move_seed_per_pit(self, pit_index, opponent_store_index):
+    def move_seed_per_pit(self, pit_index, store_index, opponent_store_index):
         """
         Distributes/drops a seed per each index pass of the Mancala board array.
         """
@@ -84,16 +84,22 @@ class Mancala:
             else:
                 pit_index += 1
 
-            print(pit_index)
+
             if pit_index == opponent_store_index:
                 print(pit_index)
-
-
             else:
                 # Decrease amount of seeds by one per each pit
                 amount_of_seeds -= 1
-                # Add seed to indexed pits
-                self._mancala_board[pit_index] += 1
+
+                if amount_of_seeds == 0 and self._mancala_board[pit_index] == 0:
+                    # Add seed to indexed pits
+                    self._mancala_board[store_index] += 1
+                    print("store index value", self._mancala_board[store_index])
+                    self.steal_player_seeds(pit_index, store_index)
+                    print(self._mancala_board[store_index])
+                else:
+                    # Add seed to indexed pits
+                    self._mancala_board[pit_index] += 1
 
         return pit_index
 
@@ -105,9 +111,10 @@ class Mancala:
         :param pit_index:
         :return:
         """
-        if self._mancala_board[pit_index] == 0:
-            self._mancala_board[store_index] = self._mancala_board[pit_index+7]
-            self._mancala_board[pit_index+7] = 0
+        print("meow", self._mancala_board[pit_index+7])
+        print(self._mancala_board[store_index])
+        self._mancala_board[store_index] += self._mancala_board[pit_index+7]
+        self._mancala_board[pit_index+7] = 0
 
         # Return something here
         return store_index
@@ -175,10 +182,10 @@ class Mancala:
                 num_of_seeds = self._mancala_board[pit_index]
 
                 # Distribute them across each move
-                landed_pit_index = self.move_seed_per_pit(pit_index, self._player_2_store_index)
+                landed_pit_index = self.move_seed_per_pit(pit_index, self._player_1_store_index, self._player_2_store_index)
 
-                # If Player 1 lands on empty space of their own and opposite (Player 2) pit contains seeds
-                self.steal_player_seeds(landed_pit_index, self._player_1_store_index)
+                # # If Player 1 lands on empty space of their own and opposite (Player 2) pit contains seeds
+                # self.steal_player_seeds(landed_pit_index, self._player_1_store_index)
 
                 # # Apply special rule number 1
                 # if self._mancala_board[landed_pit_index] == 1 and self._player_1_store_index == landed_pit_index:
@@ -194,10 +201,10 @@ class Mancala:
                 num_of_seeds = self._mancala_board[pit_index + 6]
 
                 # Distribute them across each move
-                landed_pit_index = self.move_seed_per_pit(pit_index, self._player_1_store_index)
+                landed_pit_index = self.move_seed_per_pit(pit_index, self._player_2_store_index, self._player_1_store_index)
 
-                # If Player 2 lands on empty space of their own and opposite (Player 1) pit contains seeds
-                self.steal_player_seeds(landed_pit_index, self._player_2_store_index)
+                # # If Player 2 lands on empty space of their own and opposite (Player 1) pit contains seeds
+                # self.steal_player_seeds(landed_pit_index, self._player_2_store_index)
 
                 # # Apply special rule number 1
                 # if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
