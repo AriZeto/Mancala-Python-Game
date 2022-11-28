@@ -12,7 +12,7 @@ class Mancala:
         # Index 0 represents Player 1 Store, Index 7 represents Player 2 Store
         # Index 1 through 6 represents Player 1 Seeds, Index 8 through 13 represents Player 2 Seeds
         # Each pit contains four seeds
-        self._mancala_board = [0, 4, 0, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4]
+        self._mancala_board = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4]
         self._player_1_store_index = self._mancala_board[0]
         self._player_2_store_index = self._mancala_board[7]
         # Player names
@@ -76,9 +76,6 @@ class Mancala:
         # Grabs the amount of seeds from a pit.
         amount_of_seeds = self.grab_seeds(pit_index)
 
-        # To begin dropping seeds into next pit, increment pit index by 1
-        pit_index = pit_index + 1
-
         while amount_of_seeds > 0:
             # Decrease amount of seeds by one per each pit
             amount_of_seeds -= 1
@@ -134,8 +131,7 @@ class Mancala:
 
                 num_of_seeds = self._mancala_board[pit_index]
 
-                # Gather the number of seeds, and distribute them across each move
-                grab_seed_amount = self.grab_seeds(pit_index)
+                # Distribute them across each move
                 pit_index = self.move_seed_per_pit(pit_index, self._player_1_store_index)
 
                 # If Player 1 lands on empty space of their own and opposite (Player 2) pit contains seeds
@@ -225,7 +221,7 @@ p1 = game.create_players('Ari')
 p2 = game.create_players('Milky')
 # print(p1.get_player_name())     # Prints Ari
 # print(p2.get_player_name())     # Prints Milky
-game.play_game(1, 1)            # Player 1 takes a turn, prints board array in unique design
+game.play_game(1, 3)            # Player 1 takes a turn, prints board array in unique design
 # game.play_game(2, 1)            # Player 2 takes a turn, prints board array in unique design
 # print(game.return_winner())   # Game has not ended
 # game.play_game(1, 2)
