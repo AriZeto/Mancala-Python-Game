@@ -32,14 +32,16 @@ class Mancala:
         """
         print("Player 1: ")
         print("\nNumber of seeds in Player 1's Store: " + str(self._player_1_store_index))
-        print("\nPlayer 1 contains seeds in pits index 1 through index 7. Their current pits look like...:")
+        print("\nPlayer 1 contains seeds in pits 1 through 6 (index 1 - 6). Their current pits look like...:")
         print('\n' + str(self._mancala_board[1:7]))
 
         print("\nPlayer 2: ")
         print("\nNumber of seeds in Player 2's Store: " + str(self._player_2_store_index))
-        print("\nPlayer 1 contains seeds in pits index 8 through index 13. Their current pits look like...:")
-        print('\n' + str(self._mancala_board[8:13]))
-        # return self._mancala_board
+        print("\nPlayer 1 contains seeds in pits 1 through 6 (index 8 through 13). Their current pits look like...:")
+        print('\n' + str(self._mancala_board[8:14]))
+
+        # Return the winner
+        return '\n' + self.return_winner()
 
     def grab_seeds(self, pit_index):
         """
@@ -104,6 +106,16 @@ class Mancala:
                 grab_seed_amount = self.grab_seeds()
                 self.move_seed_per_pit()
 
+    def if_row_zero(self, list_slice):
+        """
+        Helper function to 'return_winner'. Takes a slice of a list of the mancala board data member. Returns True
+        if the row values of that list are 0, False otherwise.
+        """
+        for pit in list_slice:
+            if pit != 0:
+                return False
+        return True
+
 
     def return_winner(self):
         """
@@ -111,7 +123,16 @@ class Mancala:
         """
         # Checks and compares index 0 and 7 (Mancala stores for Player 1 and Player 2) to see who has larger amount
         # Also checks if one of the player rows is empty.
-        pass
+        # if self._mancala_board[1:7] and self._mancala_board[8:14] == 0:
+        if self.if_row_zero(self._mancala_board[1:7]) and self.if_row_zero(self._mancala_board[8:14]):
+            if self._player_1_store_index > self._player_2_store_index:
+                return "Winner is Player 1: " + "ENTER THE PLAYER NAME HERE"
+            elif self._player_1_store_index < self._player_2_store_index:
+                return "Winner is Player 2: " + "ENTER THE PLAYER NAME HERE"
+            elif self._player_1_store_index == self._player_2_store_index:
+                return "It's a tie!"
+        else:
+            return "Game has not ended."
 
 
 class Player(Mancala):
