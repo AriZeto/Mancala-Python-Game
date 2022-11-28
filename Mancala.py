@@ -19,6 +19,7 @@ class Mancala:
         self._player_1 = ''
         self._player_2 = ''
 
+
     def create_players(self, name):
         """
         Takes as a parameter the name of the Player. Returns the player object.
@@ -31,6 +32,7 @@ class Mancala:
         elif self._player_2 == '':
             self._player_2 = name
         return player_char
+
 
     def print_board(self):
         """
@@ -52,6 +54,7 @@ class Mancala:
         # Return the winner
         return '\n' + self.return_winner()
 
+
     def grab_seeds(self, pit_index):
         """
         Takes as a parameter the indexed value of the Mancala Board for the specified Pit the user chooses.
@@ -64,6 +67,7 @@ class Mancala:
         self._mancala_board[pit_index] = 0
 
         return grab_seed_from_pit
+
 
     def move_seed_per_pit(self, pit_index, store_index):
         """
@@ -88,6 +92,7 @@ class Mancala:
 
         return pit_index
 
+
     def steal_player_seeds(self, pit_index, store_index):
         """
 
@@ -102,11 +107,13 @@ class Mancala:
         # Return something here
         return store_index
 
+
     def special_rule_1(self, player_number, pit_index, score_index):
         """
         When the last seed in the hand lands in your own store, take another turn.
         """
         print(player_number + " takes another turn")
+
 
     def play_game(self, player_number, pit_index):
         """
