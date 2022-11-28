@@ -1,20 +1,21 @@
 # Author: Ari Zeto
 # GitHub username: AriZeto
-# Date: 11/19/2022
+# Date: 11/27/2022
 # Description: Fill in Later.
 
 class Mancala:
     """
-    Class representing the board game dubbed 'Mancala'. Contains characteristics about its players status tas well as
-    information about the board.
+    Class representing the board game dubbed 'Mancala'. Contains information regarding the Board status as well as
+    information regarding player names.
     """
     def __init__(self):
         # Index 0 represents Player 1 Store, Index 7 represents Player 2 Store
         # Index 1 through 6 represents Player 1 Seeds, Index 8 through 13 represents Player 2 Seeds
         # Each pit contains four seeds
-        self._mancala_board = [2, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0]
+        self._mancala_board = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4]
         self._player_1_store_index = self._mancala_board[0]
         self._player_2_store_index = self._mancala_board[7]
+        # Player names
         self._player_1 = ''
         self._player_2 = ''
 
@@ -22,16 +23,13 @@ class Mancala:
         """
         Takes as a parameter the name of the Player. Returns the player object.
         """
-
         # Create Player Object, Return Player Object
         player_char = Player(name)
 
         if self._player_1 == '':
             self._player_1 = name
-
         elif self._player_2 == '':
             self._player_2 = name
-
         return player_char
 
     def print_board(self):
@@ -39,11 +37,13 @@ class Mancala:
         Contains no parameters. Prints specific formatted board information, such as the status of each
         player, their turns, and the data of the mancala board array itself.
         """
+        # Returns the status of Player 1
         print("\nPlayer 1: ")
         print("Number of seeds in Player 1's Store: " + str(self._player_1_store_index))
         print("Player 1 Pits..:")
         print(str(self._mancala_board[1:7]))
 
+        # Returns the Status of Player 2
         print("\nPlayer 2: ")
         print("Number of seeds in Player 2's Store: " + str(self._player_2_store_index))
         print("Player 2 Pits:")
@@ -70,7 +70,7 @@ class Mancala:
         Distributes/drops a seed per each index pass of the Mancala board array.
         """
         # Grabs the amount of seeds from a pit.
-        amount_of_seeds = self.grab_seeds()
+        amount_of_seeds = self.grab_seeds(pit_index)
         # To begin dropping seeds into next pit, increment pit index by 1
         pit_index = pit_index + 1
         while amount_of_seeds > 0:
@@ -93,7 +93,13 @@ class Mancala:
         """
         Player moves seeds across the board.
         """
-        print("Player " + {player_number} + " takes a turn")
+        print("\nPlayer " + str(player_number) + " takes a turn")
+
+        # Prints the current Mancala game
+        print("The Mancala board looks like this.")
+        print(self._mancala_board[0], ' ',  self._mancala_board[1:7])
+        print('   ', self._mancala_board[8:14], ' ', self._mancala_board[7])
+
         # Gather the number of seeds
         if pit_number >= 1 and pit_number <= 6:
             if player_number == 1:
@@ -101,8 +107,8 @@ class Mancala:
                 num_of_seeds = self._mancala_board[pit_number]
 
                 # Gather the number of seeds, and distribute them across each move
-                grab_seed_amount = self.grab_seeds()
-                self.move_seed_per_pit()
+                grab_seed_amount = self.grab_seeds(pit_index)
+                self.move_seed_per_pit(pit_index)
 
                 # self._mancala_board[pit_index + num_of_seeds]
 
@@ -112,8 +118,8 @@ class Mancala:
                 num_of_seeds = self._mancala_board[pit_number + 7]
 
                 # Gather the number of seeds, and distribute them across each move
-                grab_seed_amount = self.grab_seeds()
-                self.move_seed_per_pit()
+                grab_seed_amount = self.grab_seeds(pit_index)
+                self.move_seed_per_pit(pit_index)
 
     def if_row_zero(self, list_slice):
         """
@@ -162,9 +168,22 @@ class Player(Mancala):
 
 
 game = Mancala()
-player_1 = game.create_players('Ari')
-player_2 = game.create_players('Milky')
-# print(player_1.get_player_name())
-# print(player_2.get_player_name())
-
+p1 = game.create_players('Ari')
+p2 = game.create_players('Milky')
+# print(p1.get_player_name())     # Prints Ari
+# print(p2.get_player_name())     # Prints Milky
+game.play_game(1, 1)            # Player 1 takes a turn, prints board array in unique design
+game.play_game(2, 1)            # Player 2 takes a turn, prints board array in unique design
+# print(game.return_winner())   # Game has not ended
+# game.play_game(1, 2)
+# game.play_game(1, 3)
+# game.play_game(1, 4)
+# game.play_game(1, 5)
+# game.play_game(1, 6)
+# game.play_game(2, 6)
+# game.play_game(2, 5)
+# game.play_game(2, 4)
+# game.play_game(2, 3)
+# game.play_game(2, 2)
+# game.play_game(2, 1)
 print(game.print_board())
