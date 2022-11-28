@@ -71,8 +71,10 @@ class Mancala:
         """
         # Grabs the amount of seeds from a pit.
         amount_of_seeds = self.grab_seeds(pit_index)
+
         # To begin dropping seeds into next pit, increment pit index by 1
         pit_index = pit_index + 1
+
         while amount_of_seeds > 0:
             # Decrease amount of seeds by one per each pit
             amount_of_seeds -= 1
@@ -87,18 +89,15 @@ class Mancala:
         :param pit_index:
         :return:
         """
-        pass
+        if self._mancala_board[pit_index] == 0:
+            if self._mancala_board[pit_index-7] != 0:
+                self._mancala_board[pit_index] = self._mancala_board[pit_index-7]
 
     def play_game(self, player_number, pit_number):
         """
         Player moves seeds across the board.
         """
         print("\nPlayer " + str(player_number) + " takes a turn")
-
-        # Prints the current Mancala game
-        print("The Mancala board looks like this.")
-        print(self._mancala_board[0], ' ',  self._mancala_board[1:7])
-        print('   ', self._mancala_board[8:14], ' ', self._mancala_board[7])
 
         # Gather the number of seeds
         if pit_number >= 1 and pit_number <= 6:
@@ -120,6 +119,11 @@ class Mancala:
                 # Gather the number of seeds, and distribute them across each move
                 grab_seed_amount = self.grab_seeds(pit_index)
                 self.move_seed_per_pit(pit_index)
+
+            # Prints the updated Mancala game
+            print("The Mancala board now looks like this.")
+            print(self._mancala_board[0], ' ', self._mancala_board[1:7])
+            print('   ', self._mancala_board[8:14], ' ', self._mancala_board[7])
 
     def if_row_zero(self, list_slice):
         """
@@ -172,8 +176,8 @@ p1 = game.create_players('Ari')
 p2 = game.create_players('Milky')
 # print(p1.get_player_name())     # Prints Ari
 # print(p2.get_player_name())     # Prints Milky
-game.play_game(1, 1)            # Player 1 takes a turn, prints board array in unique design
-game.play_game(2, 1)            # Player 2 takes a turn, prints board array in unique design
+game.play_game(1, 4)            # Player 1 takes a turn, prints board array in unique design
+# game.play_game(2, 1)            # Player 2 takes a turn, prints board array in unique design
 # print(game.return_winner())   # Game has not ended
 # game.play_game(1, 2)
 # game.play_game(1, 3)
@@ -186,4 +190,4 @@ game.play_game(2, 1)            # Player 2 takes a turn, prints board array in u
 # game.play_game(2, 3)
 # game.play_game(2, 2)
 # game.play_game(2, 1)
-print(game.print_board())
+# print(game.print_board())
