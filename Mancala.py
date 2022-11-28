@@ -109,8 +109,33 @@ class Mancala:
         """
         When the last seed in the hand lands in your own store, take another turn.
         """
-        print("\nPlayer " + str(player_number) + " takes another turn")
+        print("\nPlayer " + str(player_number) + " gets to take another turn!")
 
+
+    def special_rule_2(self, player_number, pit_index, store_index):
+        """
+        When the last seed in your hand lands in one of your own empty pits, get to keep all the seeds in your opponents
+        opposite pit. The captured seeds as well as the last seed from your hand gets to go into your player store.
+        :return:
+        """
+        # NOT SURE IF THIS IS CORRECT ! ! ! ! ! ! ! ! !
+        if self._mancala_board[pit_index] == 1 and self._mancala_board[pit_index + 1] == 0:
+            if self._mancala_board[pit_index + 7] != 0:
+                grab_opposite_seeds = self.grab_seeds(pit_index + 7)
+                grab_player_seed = self.grab_seeds(pit_index)
+
+                # Add your final seed and opposite pit/other player seeds to your store.
+                self._mancala_board[store_index] += grab_opposite_seeds + grab_player_seed
+                print("\n Player" + {player_number} + " Just stole seeds from your pit!")
+
+
+    def set_indexed_pit_to_0(self, pit_index):
+        """
+        Sets the chosen pit to zero after selecting it to move across the board.
+        :param pit_index:
+        :return:
+        """
+        print("You may not select this pit!")
 
     def play_game(self, player_number, pit_index):
         """
@@ -127,15 +152,22 @@ class Mancala:
                 pit_index -= 1
                 num_of_seeds = self._mancala_board[pit_index]
 
+                # If Pit contains no seeds
+                if self._mancala_board[pit_index] == 0:
+                    self.set_indexed_pit_to_0(pit_index)
+
                 # Distribute them across each move
                 landed_pit_index = self.move_seed_per_pit(pit_index, self._player_1_store_index)
 
                 # If Player 1 lands on empty space of their own and opposite (Player 2) pit contains seeds
                 self.steal_player_seeds(landed_pit_index, self._player_1_store_index)
 
-                # Apply special rule number 1
-                if self._mancala_board[landed_pit_index] == 1 and self._player_1_store_index == landed_pit_index:
-                    self.special_rule_1(player_number)
+                # # Apply special rule number 1
+                # if self._mancala_board[landed_pit_index] == 1 and self._player_1_store_index == landed_pit_index:
+                #     self.special_rule_1(player_number)
+
+                # SPECIAL RULE 2 #
+                self.special_rule_2(player_number, pit_index, self._player_1_store_index)
 
             # Player 2
             if player_number == 2:
@@ -149,14 +181,27 @@ class Mancala:
                 # If Player 2 lands on empty space of their own and opposite (Player 1) pit contains seeds
                 self.steal_player_seeds(landed_pit_index, self._player_2_store_index)
 
+                # # Apply special rule number 1
+                # if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
+                #     self.special_rule_1(player_number)
+
+                # SPECIAL RULE 2 #
+                self.special_rule_2(player_number, pit_index, self._player_2_store_index)
+
+            # Prints the updated Mancala game
+            print("\nThe Mancala board now looks like this.")
+            print(self._mancala_board[self._player_2_store_index], ' ',self._mancala_board[7:13])
+            print('   ', self._mancala_board[0:6], ' ', self._mancala_board[self._player_1_store_index])
+
+            if player_number == 1:
+                # Apply special rule number 1
+                if self._mancala_board[landed_pit_index] == 1 and self._player_1_store_index == landed_pit_index:
+                    self.special_rule_1(player_number)
+
+            elif player_number == 2:
                 # Apply special rule number 1
                 if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
                     self.special_rule_1(player_number)
-
-            # Prints the updated Mancala game
-            print("The Mancala board now looks like this.")
-            print(self._mancala_board[self._player_2_store_index], ' ',self._mancala_board[7:13])
-            print('   ', self._mancala_board[0:6], ' ', self._mancala_board[self._player_1_store_index])
 
         elif pit_index >= 6 or pit_index <= 0:
             return "Invalid number for pit index."
@@ -217,6 +262,7 @@ p2 = game.create_players('Milky')
 # print(p1.get_player_name())     # Prints Ari
 # print(p2.get_player_name())     # Prints Milky
 game.play_game(1, 3)            # Player 1 takes a turn, prints board array in unique design
+game.play_game(1, 3)
 # game.play_game(2, 1)            # Player 2 takes a turn, prints board array in unique design
 # print(game.return_winner())   # Game has not ended
 # game.play_game(1, 2)
@@ -230,4 +276,4 @@ game.play_game(1, 3)            # Player 1 takes a turn, prints board array in u
 # game.play_game(2, 3)
 # game.play_game(2, 2)
 # game.play_game(2, 1)
-print(game.print_board())
+# print(game.print_board())
