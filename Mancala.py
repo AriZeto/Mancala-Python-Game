@@ -233,7 +233,11 @@ class Mancala:
 
         ### FIX THIS ###
         # # RETURN WINNER????????
-        # return self.return_winner()
+
+        #### SHOULD NOT NEED A PRINT STATEMENT !!!!!! ####
+        return print(self.return_winner())
+        #### SHOULD NOT NEED A PRINT STATEMENT !!!!!! ####
+        #### SHOULD NOT NEED A PRINT STATEMENT !!!!!! ####
         ### FIX THIS ###
 
 
@@ -255,13 +259,13 @@ class Mancala:
         # Checks and compares index 0 and 7 (Mancala stores for Player 1 and Player 2) to see who has larger amount
         # Also checks if one of the player rows is empty.
         # if self._mancala_board[1:7] and self._mancala_board[8:14] == 0:
-        if self.if_row_zero(self._mancala_board[1:7]) and self.if_row_zero(self._mancala_board[8:14]):
+        if self.if_row_zero(self._mancala_board[0:6]) or self.if_row_zero(self._mancala_board[7:13]):
             if self._mancala_board[self._player_1_store_index] > self._mancala_board[self._player_2_store_index]:
-                return "Winner is Player 1: " + self._player_1
+                return "\nWinner is Player 1: " + self._player_1
             elif self._mancala_board[self._player_1_store_index] < self._mancala_board[self._player_2_store_index]:
-                return "Winner is Player 2: " + self._player_2
+                return "\nWinner is Player 2: " + self._player_2
             elif self._mancala_board[self._player_1_store_index] == self._mancala_board[self._player_2_store_index]:
-                return "It's a tie!"
+                return "\nIt's a tie!"
         else:
             return "Game has not ended."
 
