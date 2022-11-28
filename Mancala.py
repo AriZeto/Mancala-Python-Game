@@ -135,7 +135,7 @@ class Mancala:
         :param pit_index:
         :return:
         """
-        print("You may not select this pit!")
+        print("\nYou may not select this pit!")
 
     def play_game(self, player_number, pit_index):
         """
@@ -146,15 +146,17 @@ class Mancala:
         # Gather the number of seeds
         if pit_index >= 1 and pit_index <= 6:
 
+            # If Pit contains no seeds
+            if self._mancala_board[pit_index] == 0:
+                return self.set_indexed_pit_to_0(pit_index)
+            # elif self._mancala_board[pit_index] != 0:
+            #     print(self._mancala_board[pit_index])
+
             # Player 1
             if player_number == 1:
 
                 pit_index -= 1
                 num_of_seeds = self._mancala_board[pit_index]
-
-                # If Pit contains no seeds
-                if self._mancala_board[pit_index] == 0:
-                    self.set_indexed_pit_to_0(pit_index)
 
                 # Distribute them across each move
                 landed_pit_index = self.move_seed_per_pit(pit_index, self._player_1_store_index)
@@ -262,7 +264,7 @@ p2 = game.create_players('Milky')
 # print(p1.get_player_name())     # Prints Ari
 # print(p2.get_player_name())     # Prints Milky
 game.play_game(1, 3)            # Player 1 takes a turn, prints board array in unique design
-game.play_game(1, 3)
+game.play_game(1, 2)
 # game.play_game(2, 1)            # Player 2 takes a turn, prints board array in unique design
 # print(game.return_winner())   # Game has not ended
 # game.play_game(1, 2)
