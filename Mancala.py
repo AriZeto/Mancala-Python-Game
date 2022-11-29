@@ -1,7 +1,7 @@
 # Author: Ari Zeto
 # GitHub username: AriZeto
-# Date: 11/28/2022
-# Description: Fill in Later.
+# Date: 11/29/2022
+# Description: Fill in Later. MISSING DECENT AMOUNT OF COMMENTS/DOCUMENTATION
 
 class Mancala:
     """
@@ -290,12 +290,11 @@ class Mancala:
             return "\nGame has not ended."
 
 
-class Player(Mancala):
+class Player:
     """
-    A subclass of the Mancala class. Contains information about a player of the Mancala board.
+    A class representing the Player. Contains the characteristic of the Player 1 or 2's name.
     """
     def __init__(self, name):
-        super().__init__()
         self._name = name
 
 
@@ -306,16 +305,16 @@ class Player(Mancala):
         return self._name
 
 
-# Create Mancala Object
-game = Mancala()
+# CREATE MANCALA PROJECT
+# game = Mancala()
 
-# Create Players with names
-p1 = game.create_players('Ari')
-p2 = game.create_players('Milky')
+# CHECKS IF CREATE PLAYER WORKS
+# p1 = game.create_players('Ari')
+# p2 = game.create_players('Milky')
 
 # Return Player Names
-# print(p1.get_player_name())     # Prints Ari
-# print(p2.get_player_name())     # Prints Milky
+# print(p1.get_player_name())     # Works, Prints Ari
+# print(p2.get_player_name())     # Works, Prints Milky
 
 # PLAYER 1 TESTS
 # print(game.play_game(1, 0))       # Works, returns Invalid number for pit index
@@ -344,3 +343,7 @@ p2 = game.create_players('Milky')
 
 # CHECKS IF PRINT BOARD WORKS
 # print(game.print_board())           # Works for all conditions (manually changing array and game)
+
+
+
+
