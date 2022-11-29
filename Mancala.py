@@ -87,10 +87,7 @@ class Mancala:
                 pit_index += 1
 
             ####### FIX THIS ##############
-            if pit_index == opponent_store_index:
-                print(pit_index)
-                print('we are stealing your prints (test).')
-            else:
+            if pit_index != opponent_store_index:
                 # Decrease amount of seeds by one per each pit
                 amount_of_seeds -= 1
 
