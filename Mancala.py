@@ -128,7 +128,7 @@ class Mancala:
         """
         When the last seed in the hand lands in your own store, take another turn.
         """
-        print("\nPlayer " + str(player_number) + " gets to take another turn!")
+        print("\nPlayer " + str(player_number) + " takes another turn")
 
 
     # def special_rule_2(self, player_number, pit_index, store_index):
@@ -178,7 +178,7 @@ class Mancala:
 
         ##### NEEDS TO BE FIXED. IF PIT IS 0 IT DOES NOT WORK #########
         if pit_index > 6 or pit_index <= 0:
-            return "\nInvalid number for pit index."
+            return "\nInvalid number for pit index"
 
         # Gather the number of seeds
         if pit_index >= 1 and pit_index <= 6:
@@ -285,9 +285,9 @@ class Mancala:
             elif self._mancala_board[self._player_1_store_index] < self._mancala_board[self._player_2_store_index]:
                 return "\nWinner is Player 2: " + self._player_2
             elif self._mancala_board[self._player_1_store_index] == self._mancala_board[self._player_2_store_index]:
-                return "\nIt's a tie!"
+                return "\nIt's a tie"
         else:
-            return "\nGame has not ended."
+            return "\nGame has not ended"
 
 
 class Player:
