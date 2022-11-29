@@ -22,7 +22,7 @@ class Mancala:
         self._player_2 = ''
 
 
-    def create_players(self, name):
+    def create_player(self, name):
         """
         Takes as a parameter the name of the Player. Returns the player object.
         """
