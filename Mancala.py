@@ -94,11 +94,12 @@ class Mancala:
                 # Decrease amount of seeds by one per each pit
                 amount_of_seeds -= 1
 
-                if amount_of_seeds == 0 and self._mancala_board[pit_index] == 0:
+                if amount_of_seeds == 0 and self._mancala_board[pit_index] == 0 and pit_index != self._player_1_store_index and pit_index != self._player_2_store_index:
                     # Add seed to indexed pits
                     self._mancala_board[store_index] += 1
                     # print("store index value", self._mancala_board[store_index])
                     self.steal_player_seeds(pit_index, store_index)
+
                     # print(self._mancala_board[store_index])
                 else:
                     # Add seed to indexed pits
@@ -153,7 +154,8 @@ class Mancala:
         :param pit_index:
         :return:
         """
-        print(f"\nThis pit is empty! Choose a different pit, Player {player_number}.")
+        return (f"\nThis pit is empty! Choose a different pit, Player {player_number}.")
+
 
     # def skip_opponent_store(self, pit_index, store_index):
     #     """
@@ -169,19 +171,28 @@ class Mancala:
         Player moves seeds across the board.
         """
 
-        # If Pit contains no seeds
-        if self._mancala_board[pit_index-1] == 0:
-            return self.set_indexed_pit_to_0(player_number)
+
+        ##### WORKS WITHOUT THIS (STILL TRYING TO FIGURE OUT WHY) #####
+        # elif player_number == 2 and self._mancala_board[pit_index - 1] == 0:
+        #     return self.set_indexed_pit_to_0(player_number)
+
+        ##### NEEDS TO BE FIXED. IF PIT IS 0 IT DOES NOT WORK #########
+        if pit_index > 6 or pit_index <= 0:
+            return "\nInvalid number for pit index."
 
         # Gather the number of seeds
         if pit_index >= 1 and pit_index <= 6:
 
-            print("\nPlayer " + str(player_number) + " takes a turn.")
-
             # Player 1
             if player_number == 1:
 
+                # If Pit contains no seeds
                 pit_index -= 1
+                if self._mancala_board[pit_index] == 0:
+                    return self.set_indexed_pit_to_0(player_number)
+
+                print("\nPlayer " + str(player_number) + " takes a turn.")
+
                 num_of_seeds = self._mancala_board[pit_index]
 
                 # Distribute them across each move
@@ -201,7 +212,20 @@ class Mancala:
             if player_number == 2:
                 # Add seven (six?) to get appropriate pit number
                 pit_index = pit_index + 6
-                num_of_seeds = self._mancala_board[pit_index + 6]
+
+                # If Pit contains no seeds
+                if self._mancala_board[pit_index] == 0:
+                    return self.set_indexed_pit_to_0(player_number)
+
+                print("\nPlayer " + str(player_number) + " takes a turn.")
+
+                ### Go around board ###
+                # if self._mancala_board[pit_index] >= self._mancala_board[pit_index + 6]:
+                #     num_of_seeds = self._mancala_board[pit_index]
+
+                # Go around the board
+                # if self._mancala_board[pit_index] >= self._mancala_board[pit_index + 6]:
+                #     pit_index = 0
 
                 # Distribute them across each move
                 landed_pit_index = self.move_seed_per_pit(pit_index, self._player_2_store_index, self._player_1_store_index)
@@ -218,8 +242,11 @@ class Mancala:
 
             # Prints the updated Mancala game
             print("\nThe Mancala board now looks like this.")
-            print(self._mancala_board[self._player_2_store_index], ' ',self._mancala_board[7:13])
-            print('   ', self._mancala_board[0:6], ' ', self._mancala_board[self._player_1_store_index])
+            # print(self._mancala_board[self._player_2_store_index], ' ', self._mancala_board[7:13])
+            # print('   ', self._mancala_board[0:6], ' ', self._mancala_board[self._player_1_store_index])
+
+
+            # print(self._mancala_board)
 
             if player_number == 1:
                 # Apply special rule number 1
@@ -231,18 +258,7 @@ class Mancala:
                 if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
                     self.take_another_turn(player_number)
 
-        ##### NEEDS TO BE FIXED. IF PIT IS 0 IT DOES NOT WORK #########
-        elif pit_index >= 6 or pit_index <= 0:
-            print("\nInvalid number for pit index.")
-
-        ### FIX THIS ###
-        # # RETURN WINNER????????
-
-        #### SHOULD NOT NEED A PRINT STATEMENT !!!!!! ####
-        return print(self.return_winner())
-        #### SHOULD NOT NEED A PRINT STATEMENT !!!!!! ####
-        #### SHOULD NOT NEED A PRINT STATEMENT !!!!!! ####
-        ### FIX THIS ###
+        return self._mancala_board
 
 
     def if_row_zero(self, list_slice):
@@ -296,13 +312,30 @@ p1 = game.create_players('Ari')
 p2 = game.create_players('Milky')
 # print(p1.get_player_name())     # Prints Ari
 # print(p2.get_player_name())     # Prints Milky
-game.play_game(1, 1)            # Player 1 takes a turn, gets another turn since landed in store
-game.play_game(1, 1)            # Player 1 cannot choose this pit, as it is empty now
-game.play_game(1, 2)
-game.play_game(1, 3)
-game.play_game(1, 4)
-game.play_game(1, 5)
-game.play_game(1, 6)          # If this runs, player 1 wins
+print(game.play_game(2, 1))       # Player 1 takes a turn, gets another turn since landed in store
+print(game.play_game(2, 1))
+# game.play_game(1, 1)            # Player 1 cannot choose this pit, as it is empty now
+# game.play_game(1, 2)
+# game.play_game(1, 3)
+# game.play_game(1, 4)
+# game.play_game(1, 5)
+# game.play_game(1, 6)          # If this runs, player 1 wins
+
+
+# game.play_game(1, 6)
+# game.play_game(2, 1)
+
+
+
+
+# 0 FOR PLAYER PIT DOES NOT RAISE ISSUE !!!!!!
+
+# game.play_game(2, 1)          # DOES NOT WORK!!!
+# game.play_game(2, 2)          # DOES NOT WORK!!!
+# game.play_game(2, 3)    # DOES NOT WORK!!!
+# game.play_game(2, 4)    # DOES NOT WORK!!!
+# game.play_game(2, 5)    # DOES NOT WORK!!!
+# game.play_game(2, 6)      # DOES NOT WORK!!!
 
 
 # game.play_game(1, -1)
