@@ -54,7 +54,7 @@ class Mancala:
         print(str(self._mancala_board[7:13]))
 
         # Return the winner
-        return '\n' + self.return_winner()
+        return self.return_winner()
 
 
     def grab_seeds(self, pit_index):
@@ -306,37 +306,41 @@ class Player(Mancala):
         return self._name
 
 
-
+# Create Mancala Object
 game = Mancala()
+
+# Create Players with names
 p1 = game.create_players('Ari')
 p2 = game.create_players('Milky')
+
+# Return Player Names
 # print(p1.get_player_name())     # Prints Ari
 # print(p2.get_player_name())     # Prints Milky
-print(game.play_game(2, 1))       # Player 1 takes a turn, gets another turn since landed in store
-print(game.play_game(2, 1))
-# game.play_game(1, 1)            # Player 1 cannot choose this pit, as it is empty now
-# game.play_game(1, 2)
-# game.play_game(1, 3)
-# game.play_game(1, 4)
-# game.play_game(1, 5)
-# game.play_game(1, 6)          # If this runs, player 1 wins
 
+# PLAYER 1 TESTS
+# print(game.play_game(1, 0))       # Works, returns Invalid number for pit index
+# print(game.play_game(1, 1))       # Works
+# print(game.play_game(1, 1))       # Works, returns pit is empty if already chosen
+# print(game.play_game(1, 2))         # Works
+# print(game.play_game(1, 3))         # Works, returns player gets another turn, adds to correct store
+# print(game.play_game(1, 4))       # Works, adds to correct store
+# print(game.play_game(1, 5))         # Works
+# print(game.play_game(1, 6))       # Works
+# print(game.play_game(1, 7))         # Works, returns Invalid number for pit index
 
-# game.play_game(1, 6)
-# game.play_game(2, 1)
+# PLAYER 2 TESTS
+# print(game.play_game(2, 0))         # Works, returns Invalid number for pit index
+# print(game.play_game(2, 1))         # Works
+# print(game.play_game(2, 1))             # Works, returns pit is empty if already chosen
+# print(game.play_game(2, 2))            # Works
+# print(game.play_game(2, 3))             # WOrks, returns player gets another turn, adds to correct store
+# print(game.play_game(2, 4))             # Works, adds to store as passes by,
+# print(game.play_game(2, 5))         # Works
+# print(game.play_game(2, 6))       # Works
+# print(game.play_game(2, 7))         # Works, returns Invalid number for pit index
 
+# CHECKS IF RETURN WINNER WORKS
+# print(game.return_winner())         # Works for all conditions
 
-
-
-# 0 FOR PLAYER PIT DOES NOT RAISE ISSUE !!!!!!
-
-# game.play_game(2, 1)          # DOES NOT WORK!!!
-# game.play_game(2, 2)          # DOES NOT WORK!!!
-# game.play_game(2, 3)    # DOES NOT WORK!!!
-# game.play_game(2, 4)    # DOES NOT WORK!!!
-# game.play_game(2, 5)    # DOES NOT WORK!!!
-# game.play_game(2, 6)      # DOES NOT WORK!!!
-
-
-# game.play_game(1, -1)
-# print(game.print_board())
+# CHECKS IF PRINT BOARD WORKS
+# print(game.print_board())           # Works for all conditions (manually changing array and game)
