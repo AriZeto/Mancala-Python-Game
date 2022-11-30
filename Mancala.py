@@ -177,6 +177,7 @@ class Mancala:
         if pit_index > 6 or pit_index <= 0:
             return "\nInvalid number for pit index"
 
+        # If one of the rows is zeroed out completely, return message that the game has ended.
         if self.if_row_zero(self._mancala_board[0:6]) or self.if_row_zero(self._mancala_board[7:13]):
             return "Game is ended"
 
