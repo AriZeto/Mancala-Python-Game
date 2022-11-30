@@ -190,7 +190,6 @@ class Mancala:
         Player moves seeds across the board.
         """
 
-
         ##### WORKS WITHOUT THIS (STILL TRYING TO FIGURE OUT WHY) #####
         # elif player_number == 2 and self._mancala_board[pit_index - 1] == 0:
         #     return self.set_indexed_pit_to_0(player_number)
@@ -214,7 +213,7 @@ class Mancala:
                 if self._mancala_board[pit_index] == 0:
                     return self.set_indexed_pit_to_0(player_number)
 
-                print("\nplayer " + str(player_number) + " takes a turn.")
+                # print("\nplayer " + str(player_number) + " takes a turn.")
 
                 num_of_seeds = self._mancala_board[pit_index]
 
@@ -264,7 +263,7 @@ class Mancala:
                 # self.special_rule_2(player_number, pit_index, self._player_2_store_index)
 
             # Prints the updated Mancala game
-            print("\nThe Mancala board now looks like this.")
+            # print("\nThe Mancala board now looks like this.")
             # print(self._mancala_board[self._player_2_store_index], ' ', self._mancala_board[7:13])
             # print('   ', self._mancala_board[0:6], ' ', self._mancala_board[self._player_1_store_index])
 
