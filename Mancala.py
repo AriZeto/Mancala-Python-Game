@@ -316,11 +316,11 @@ class Player:
 
 
 # CREATE MANCALA PROJECT
-game = Mancala()
+# game = Mancala()
 
 # CHECKS IF CREATE PLAYER WORKS
-p1 = game.create_player('Ari')
-p2 = game.create_player('Milky')
+# p1 = game.create_player('Ari')
+# p2 = game.create_player('Milky')
 
 # Return Player Names
 # print(p1.get_player_name())     # Works, Prints Ari
@@ -328,7 +328,7 @@ p2 = game.create_player('Milky')
 
 # PLAYER 1 TESTS
 # print(game.play_game(1, 0))       # Works, returns Invalid number for pit index
-print(game.play_game(1, 1))       # Works
+# print(game.play_game(1, 1))       # Works
 # print(game.play_game(1, 1))
 # print(game.play_game(1, 2))
 # print(game.play_game(2, 1))
@@ -356,5 +356,5 @@ print(game.play_game(1, 1))       # Works
 
 # CHECKS IF PRINT BOARD WORKS
 # print(game.print_board())           # Works for all conditions (manually changing array and game)
-
-print(game.play_game(1, 6))
+#
+# print(game.play_game(1, 6))
