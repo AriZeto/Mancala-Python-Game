@@ -257,11 +257,11 @@ class Player:
 
 
 # CREATE MANCALA PROJECT
-game = Mancala()
+# game = Mancala()
 
 # CHECKS IF CREATE PLAYER WORKS
-p1 = game.create_player('Ari')
-p2 = game.create_player('Milky')
+# p1 = game.create_player('Ari')
+# p2 = game.create_player('Milky')
 
 # Return Player Names
 # print(p1.get_player_name())     # Works, Prints Ari
@@ -304,11 +304,11 @@ p2 = game.create_player('Milky')
 # print(game.play_game(1, 5))
 # print(game.play_game(1, 1))
 
-game.play_game(1, 1)
-game.play_game(1, 2)
-game.play_game(1, 3)
-game.play_game(1, 4)
-game.play_game(1, 5)
-game.play_game(1, 6)
-game.print_board()
-print(game.return_winner())
+# game.play_game(1, 1)
+# game.play_game(1, 2)
+# game.play_game(1, 3)
+# game.play_game(1, 4)
+# game.play_game(1, 5)
+# game.play_game(1, 6)
+# game.print_board()
+# print(game.return_winner())
