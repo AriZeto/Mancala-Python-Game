@@ -320,6 +320,9 @@ p2 = game.create_player('Milky')
 # PLAYER 1 TESTS
 # print(game.play_game(1, 0))       # Works, returns Invalid number for pit index
 # print(game.play_game(1, 1))       # Works
+# print(game.play_game(1, 1))
+# print(game.play_game(1, 2))
+# print(game.play_game(2, 1))
 # print(game.play_game(1, 1))       # Works, returns pit is empty if already chosen
 # print(game.play_game(1, 2))         # Works
 # print(game.play_game(1, 3))         # Works, returns player gets another turn, adds to correct store
