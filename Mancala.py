@@ -147,7 +147,7 @@ class Mancala:
         """
         When the last seed in the hand lands in your own store, take another turn.
         """
-        print(f"player " + str(player_number) + " takes another turn")
+        print(f"player {player_number} takes another turn")
 
 
     # def special_rule_2(self, player_number, pit_index, store_index):
