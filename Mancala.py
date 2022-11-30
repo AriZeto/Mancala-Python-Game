@@ -162,7 +162,7 @@ class Mancala:
         Player moves seeds across the board.
         """
 
-        ##### NEEDS TO BE FIXED. IF PIT IS 0 IT DOES NOT WORK #########
+
         if pit_index > 6 or pit_index <= 0:
             return "Invalid number for pit index"
 
@@ -175,9 +175,10 @@ class Mancala:
 
             # Player 1
             if player_number == 1:
+                # Subtract from index to get appropriate pit index
+                pit_index -= 1
 
                 # If Pit contains no seeds
-                pit_index -= 1
                 if self._mancala_board[pit_index] == 0:
                     return self.set_indexed_pit_to_0(player_number)
 
@@ -189,8 +190,8 @@ class Mancala:
 
             # Player 2
             if player_number == 2:
-                # Add seven (six?) to get appropriate pit number
-                pit_index = pit_index + 6
+                # Add seven (six?) to get appropriate pit index
+                pit_index += 6
 
                 # If Pit contains no seeds
                 if self._mancala_board[pit_index] == 0:
