@@ -59,15 +59,13 @@ class Mancala:
         player, their turns, and the data of the mancala board array itself.
         """
         # Returns the status of Player 1
-        print("Player 1: ")
-        print("Number of seeds in Player 1's Store: " + str(self._mancala_board[self._player_1_store_index]))
-        print("Player 1 Pits..:")
+        print("player1:")
+        print("store: " + str(self._mancala_board[self._player_1_store_index]))
         print(str(self._mancala_board[0:6]))
 
         # Returns the Status of Player 2
-        print("Player 2: ")
-        print("Number of seeds in Player 2's Store: " + str(self._mancala_board[self._player_2_store_index]))
-        print("Player 2 Pits:")
+        print("player2:")
+        print("store: " + str(self._mancala_board[self._player_2_store_index]))
         print(str(self._mancala_board[7:13]))
 
         # Return the winner
@@ -259,11 +257,11 @@ class Player:
 
 
 # CREATE MANCALA PROJECT
-# game = Mancala()
+game = Mancala()
 
 # CHECKS IF CREATE PLAYER WORKS
-# p1 = game.create_player('Ari')
-# p2 = game.create_player('Milky')
+p1 = game.create_player('Ari')
+p2 = game.create_player('Milky')
 
 # Return Player Names
 # print(p1.get_player_name())     # Works, Prints Ari
@@ -306,11 +304,11 @@ class Player:
 # print(game.play_game(1, 5))
 # print(game.play_game(1, 1))
 
-# game.play_game(1, 1)
-# game.play_game(1, 2)
-# game.play_game(1, 3)
-# game.play_game(1, 4)
-# game.play_game(1, 5)
-# game.play_game(1, 6)
-# game.print_board()
-# print(game.return_winner())
+game.play_game(1, 1)
+game.play_game(1, 2)
+game.play_game(1, 3)
+game.play_game(1, 4)
+game.play_game(1, 5)
+game.play_game(1, 6)
+game.print_board()
+print(game.return_winner())
