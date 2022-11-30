@@ -192,7 +192,7 @@ class Mancala:
                 if self._mancala_board[pit_index] == 0:
                     return self.set_indexed_pit_to_0(player_number)
 
-                print("\nPlayer " + str(player_number) + " takes a turn.")
+                print("\nplayer " + str(player_number) + " takes a turn.")
 
                 num_of_seeds = self._mancala_board[pit_index]
 
