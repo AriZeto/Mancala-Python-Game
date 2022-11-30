@@ -14,7 +14,7 @@ class Mancala:
         # Each pit contains four seeds
 
         ########### INDEX SPORE FOR PLAYER 2 NOT WORKING #####################
-        self._mancala_board = [4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0]
+        self._mancala_board = [4, 4, 4, 4, 4, 8, 0, 4, 4, 4, 4, 4, 4, 0]
         self._player_1_store_index = 6
         self._player_2_store_index = 13
         # Player names
@@ -92,8 +92,12 @@ class Mancala:
                 amount_of_seeds -= 1
 
                 if amount_of_seeds == 0 and self._mancala_board[pit_index] == 0 and pit_index != self._player_1_store_index and pit_index != self._player_2_store_index:
+
+
                     # Add seed to indexed pits
-                    self._mancala_board[store_index] += 1
+                    # self._mancala_board[store_index] += 1         # test
+
+
                     # print("store index value", self._mancala_board[store_index])
                     self.steal_player_seeds(pit_index, store_index)
 
@@ -114,8 +118,13 @@ class Mancala:
         """
         # print("meow", self._mancala_board[pit_index+7])
         # print(self._mancala_board[store_index])
-        self._mancala_board[store_index] += self._mancala_board[pit_index+7]
-        self._mancala_board[pit_index+7] = 0
+        if store_index == self._player_1_store_index:
+            self._mancala_board[store_index] += self._mancala_board[pit_index+7]
+            self._mancala_board[pit_index+7] = 0
+        else:
+            self._mancala_board[store_index] += self._mancala_board[pit_index - 7]
+            self._mancala_board[pit_index - 7] = 0
+
 
         # Return something here
         return store_index
@@ -307,11 +316,11 @@ class Player:
 
 
 # CREATE MANCALA PROJECT
-game = Mancala()
+# game = Mancala()
 
 # CHECKS IF CREATE PLAYER WORKS
-p1 = game.create_player('Ari')
-p2 = game.create_player('Milky')
+# p1 = game.create_player('Ari')
+# p2 = game.create_player('Milky')
 
 # Return Player Names
 # print(p1.get_player_name())     # Works, Prints Ari
@@ -348,4 +357,4 @@ p2 = game.create_player('Milky')
 # CHECKS IF PRINT BOARD WORKS
 # print(game.print_board())           # Works for all conditions (manually changing array and game)
 
-
+# print(game.play_game(1, 6))
