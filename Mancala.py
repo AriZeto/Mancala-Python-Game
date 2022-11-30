@@ -177,6 +177,9 @@ class Mancala:
         if pit_index > 6 or pit_index <= 0:
             return "\nInvalid number for pit index"
 
+        if self.if_row_zero(self._mancala_board[0:6]) or self.if_row_zero(self._mancala_board[7:13]):
+            return "Game is ended"
+
         # Gather the number of seeds
         if pit_index >= 1 and pit_index <= 6:
 
@@ -303,11 +306,11 @@ class Player:
 
 
 # CREATE MANCALA PROJECT
-# game = Mancala()
+game = Mancala()
 
 # CHECKS IF CREATE PLAYER WORKS
-# p1 = game.create_players('Ari')
-# p2 = game.create_players('Milky')
+p1 = game.create_player('Ari')
+p2 = game.create_player('Milky')
 
 # Return Player Names
 # print(p1.get_player_name())     # Works, Prints Ari
@@ -340,7 +343,5 @@ class Player:
 
 # CHECKS IF PRINT BOARD WORKS
 # print(game.print_board())           # Works for all conditions (manually changing array and game)
-
-
 
 
