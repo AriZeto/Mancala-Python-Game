@@ -1,6 +1,6 @@
 # Author: Ari Zeto
 # GitHub username: AriZeto
-# Date: 11/29/2022
+# Date: 11/30/2022
 # Description: Fill in Later!!! MISSING DECENT AMOUNT OF COMMENTS/DOCUMENTATION
 
 class Mancala:
