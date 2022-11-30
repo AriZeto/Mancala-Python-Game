@@ -14,7 +14,7 @@ class Mancala:
         # Each pit contains four seeds
 
         ########### INDEX SPORE FOR PLAYER 2 NOT WORKING #####################
-        self._mancala_board = [4, 4, 4, 4, 4, 8, 0, 4, 4, 4, 4, 4, 4, 0]
+        self._mancala_board = [4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0]
         self._player_1_store_index = 6
         self._player_2_store_index = 13
         # Player names
