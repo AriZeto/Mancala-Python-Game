@@ -273,12 +273,12 @@ class Mancala:
             if player_number == 1:
                 # Apply special rule number 1
                 if self._mancala_board[landed_pit_index] == 1 and self._player_1_store_index == landed_pit_index:
-                    print(f"player 1 take another turn")
+                    print("player 1 take another turn")
 
             elif player_number == 2:
                 # Apply special rule number 1
                 if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
-                    print(f"player 2 take another turn")
+                    print("player 2 take another turn")
 
         return self._mancala_board
 
