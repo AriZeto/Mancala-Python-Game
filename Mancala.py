@@ -95,7 +95,7 @@ class Mancala:
         # Grabs the amount of seeds from a pit.
         amount_of_seeds = self.grab_seeds(pit_index)
 
-        # print(opponent_store_index)
+        # Loop through the Mancala Board Array after final element
         while amount_of_seeds > 0:
 
             if pit_index >= 13:
@@ -133,14 +133,12 @@ class Mancala:
         :param pit_index:
         :return:
         """
-        # print("meow", self._mancala_board[pit_index+7])
-        # print(self._mancala_board[store_index])
         self._mancala_board[store_index] += self._mancala_board[self._index_opposites[pit_index]]
         self._mancala_board[self._index_opposites[pit_index]] = 0
 
 
         # Return something here
-        return store_index
+        # return store_index
 
 
     # def take_another_turn(self, player_number):
@@ -148,23 +146,6 @@ class Mancala:
     #     When the last seed in the hand lands in your own store, take another turn.
     #     """
     #     print(f"player {player_number} takes another turn")
-
-
-    # def special_rule_2(self, player_number, pit_index, store_index):
-    #     """
-    #     When the last seed in your hand lands in one of your own empty pits, get to keep all the seeds in your opponents
-    #     opposite pit. The captured seeds as well as the last seed from your hand gets to go into your player store.
-    #     :return:
-    #     """
-    #     # NOT SURE IF THIS IS CORRECT ! ! ! ! ! ! ! ! !
-    #     if self._mancala_board[pit_index] == 1 and self._mancala_board[pit_index + 1] == 0:
-    #         if self._mancala_board[pit_index + 7] != 0:
-    #             grab_opposite_seeds = self.grab_seeds(pit_index + 7)
-    #             grab_player_seed = self.grab_seeds(pit_index)
-    #
-    #             # Add your final seed and opposite pit/other player seeds to your store.
-    #             self._mancala_board[store_index] += grab_opposite_seeds + grab_player_seed
-    #             print("\n Player" + {player_number} + " Just stole seeds from your pit!")
 
 
     def set_indexed_pit_to_0(self, player_number):
@@ -175,15 +156,6 @@ class Mancala:
         """
         return (f"This pit is empty! Choose a different pit, Player {player_number}.")
 
-
-    # def skip_opponent_store(self, pit_index, store_index):
-    #     """
-    #     Skips the opponents turn when passing.
-    #     :return:
-    #     """
-    #     # FILL THIS IN!
-    #     if self._mancala_board[pit_index] != 0 and self.move_seed_per_pit(pit_index, store_index):
-    #         self._mancala_board[pit_index] = self.move_seed_per_pit(pit_index+1, store_index)
 
     def play_game(self, player_number, pit_index):
         """
