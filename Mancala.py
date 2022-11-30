@@ -125,7 +125,7 @@ class Mancala:
         """
         When the last seed in the hand lands in your own store, take another turn.
         """
-        print("\nPlayer " + str(player_number) + " takes another turn")
+        print("\nplayer " + str(player_number) + " takes another turn")
 
 
     # def special_rule_2(self, player_number, pit_index, store_index):
@@ -218,7 +218,7 @@ class Mancala:
                 if self._mancala_board[pit_index] == 0:
                     return self.set_indexed_pit_to_0(player_number)
 
-                print("\nPlayer " + str(player_number) + " takes a turn.")
+                # print("\nplayer " + str(player_number) + " takes a turn.")
 
                 ### Go around board ###
                 # if self._mancala_board[pit_index] >= self._mancala_board[pit_index + 6]:
@@ -282,9 +282,9 @@ class Mancala:
         # if self._mancala_board[1:7] and self._mancala_board[8:14] == 0:
         if self.if_row_zero(self._mancala_board[0:6]) or self.if_row_zero(self._mancala_board[7:13]):
             if self._mancala_board[self._player_1_store_index] > self._mancala_board[self._player_2_store_index]:
-                return "\nWinner is Player 1: " + self._player_1
+                return "\nWinner is player 1: " + self._player_1
             elif self._mancala_board[self._player_1_store_index] < self._mancala_board[self._player_2_store_index]:
-                return "\nWinner is Player 2: " + self._player_2
+                return "\nWinner is player 2: " + self._player_2
             elif self._mancala_board[self._player_1_store_index] == self._mancala_board[self._player_2_store_index]:
                 return "\nIt's a tie"
         else:
