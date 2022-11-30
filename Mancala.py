@@ -143,11 +143,11 @@ class Mancala:
         return store_index
 
 
-    def take_another_turn(self, player_number):
-        """
-        When the last seed in the hand lands in your own store, take another turn.
-        """
-        print(f"player {player_number} takes another turn")
+    # def take_another_turn(self, player_number):
+    #     """
+    #     When the last seed in the hand lands in your own store, take another turn.
+    #     """
+    #     print(f"player {player_number} takes another turn")
 
 
     # def special_rule_2(self, player_number, pit_index, store_index):
@@ -273,12 +273,12 @@ class Mancala:
             if player_number == 1:
                 # Apply special rule number 1
                 if self._mancala_board[landed_pit_index] == 1 and self._player_1_store_index == landed_pit_index:
-                    self.take_another_turn(player_number)
+                    print(f"player {player_number} takes another turn")
 
             elif player_number == 2:
                 # Apply special rule number 1
                 if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
-                    self.take_another_turn(player_number)
+                    print(f"player {player_number} takes another turn")
 
         return self._mancala_board
 
