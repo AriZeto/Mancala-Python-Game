@@ -20,6 +20,24 @@ class Mancala:
         # Player names
         self._player_1 = ''
         self._player_2 = ''
+        self._index_opposites = {
+            # (Player 1) key is their pit, value is player 2 pit
+            0:12,
+            1:11,
+            2:10,
+            3:9,
+            4:8,
+            5:7,
+
+            # (Player 2) key is their pit, value is player 1 pit
+            7:5,
+            8:4,
+            9:3,
+            10:2,
+            11:1,
+            12:0
+
+        }
 
 
     def create_player(self, name):
@@ -118,12 +136,8 @@ class Mancala:
         """
         # print("meow", self._mancala_board[pit_index+7])
         # print(self._mancala_board[store_index])
-        if store_index == self._player_1_store_index:
-            self._mancala_board[store_index] += self._mancala_board[pit_index+7]
-            self._mancala_board[pit_index+7] = 0
-        else:
-            self._mancala_board[store_index] += self._mancala_board[pit_index - 7]
-            self._mancala_board[pit_index - 7] = 0
+        self._mancala_board[store_index] += self._mancala_board[self._index_opposites[pit_index]]
+        self._mancala_board[self._index_opposites[pit_index]] = 0
 
 
         # Return something here
@@ -358,3 +372,7 @@ class Player:
 # print(game.print_board())           # Works for all conditions (manually changing array and game)
 #
 # print(game.play_game(1, 6))
+
+# print(game._mancala_board)
+# print(game.play_game(1, 5))
+# print(game.play_game(1, 1))
