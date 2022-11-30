@@ -190,10 +190,6 @@ class Mancala:
         Player moves seeds across the board.
         """
 
-        ##### WORKS WITHOUT THIS (STILL TRYING TO FIGURE OUT WHY) #####
-        # elif player_number == 2 and self._mancala_board[pit_index - 1] == 0:
-        #     return self.set_indexed_pit_to_0(player_number)
-
         ##### NEEDS TO BE FIXED. IF PIT IS 0 IT DOES NOT WORK #########
         if pit_index > 6 or pit_index <= 0:
             return "Invalid number for pit index"
@@ -213,22 +209,11 @@ class Mancala:
                 if self._mancala_board[pit_index] == 0:
                     return self.set_indexed_pit_to_0(player_number)
 
-                # print("\nplayer " + str(player_number) + " takes a turn.")
-
-                num_of_seeds = self._mancala_board[pit_index]
+                # num_of_seeds = self._mancala_board[pit_index]
 
                 # Distribute them across each move
                 landed_pit_index = self.move_seed_per_pit(pit_index, self._player_1_store_index, self._player_2_store_index)
 
-                # # If Player 1 lands on empty space of their own and opposite (Player 2) pit contains seeds
-                # self.steal_player_seeds(landed_pit_index, self._player_1_store_index)
-
-                # # Apply special rule number 1
-                # if self._mancala_board[landed_pit_index] == 1 and self._player_1_store_index == landed_pit_index:
-                #     self.special_rule_1(player_number)
-                #
-                # # SPECIAL RULE 2 #
-                # self.special_rule_2(player_number, pit_index, self._player_1_store_index)
 
             # Player 2
             if player_number == 2:
@@ -239,36 +224,9 @@ class Mancala:
                 if self._mancala_board[pit_index] == 0:
                     return self.set_indexed_pit_to_0(player_number)
 
-                # print("\nplayer " + str(player_number) + " takes a turn.")
-
-                ### Go around board ###
-                # if self._mancala_board[pit_index] >= self._mancala_board[pit_index + 6]:
-                #     num_of_seeds = self._mancala_board[pit_index]
-
-                # Go around the board
-                # if self._mancala_board[pit_index] >= self._mancala_board[pit_index + 6]:
-                #     pit_index = 0
-
                 # Distribute them across each move
                 landed_pit_index = self.move_seed_per_pit(pit_index, self._player_2_store_index, self._player_1_store_index)
 
-                # # If Player 2 lands on empty space of their own and opposite (Player 1) pit contains seeds
-                # self.steal_player_seeds(landed_pit_index, self._player_2_store_index)
-
-                # # Apply special rule number 1
-                # if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
-                #     self.special_rule_1(player_number)
-                #
-                # # SPECIAL RULE 2 #
-                # self.special_rule_2(player_number, pit_index, self._player_2_store_index)
-
-            # Prints the updated Mancala game
-            # print("\nThe Mancala board now looks like this.")
-            # print(self._mancala_board[self._player_2_store_index], ' ', self._mancala_board[7:13])
-            # print('   ', self._mancala_board[0:6], ' ', self._mancala_board[self._player_1_store_index])
-
-
-            # print(self._mancala_board)
 
             if player_number == 1:
                 # Apply special rule number 1
@@ -328,11 +286,11 @@ class Player:
 
 
 # CREATE MANCALA PROJECT
-# game = Mancala()
+game = Mancala()
 
 # CHECKS IF CREATE PLAYER WORKS
-# p1 = game.create_player('Ari')
-# p2 = game.create_player('Milky')
+p1 = game.create_player('Ari')
+p2 = game.create_player('Milky')
 
 # Return Player Names
 # print(p1.get_player_name())     # Works, Prints Ari
@@ -374,3 +332,12 @@ class Player:
 # print(game._mancala_board)
 # print(game.play_game(1, 5))
 # print(game.play_game(1, 1))
+
+game.play_game(1, 1)
+game.play_game(1, 2)
+game.play_game(1, 3)
+game.play_game(1, 4)
+game.play_game(1, 5)
+game.play_game(1, 6)
+game.print_board()
+print(game.return_winner())
