@@ -59,13 +59,13 @@ class Mancala:
         player, their turns, and the data of the mancala board array itself.
         """
         # Returns the status of Player 1
-        print("\nPlayer 1: ")
+        print("Player 1: ")
         print("Number of seeds in Player 1's Store: " + str(self._mancala_board[self._player_1_store_index]))
         print("Player 1 Pits..:")
         print(str(self._mancala_board[0:6]))
 
         # Returns the Status of Player 2
-        print("\nPlayer 2: ")
+        print("Player 2: ")
         print("Number of seeds in Player 2's Store: " + str(self._mancala_board[self._player_2_store_index]))
         print("Player 2 Pits:")
         print(str(self._mancala_board[7:13]))
@@ -147,7 +147,7 @@ class Mancala:
         """
         When the last seed in the hand lands in your own store, take another turn.
         """
-        print("\nplayer " + str(player_number) + " takes another turn")
+        print("player " + str(player_number) + " takes another turn")
 
 
     # def special_rule_2(self, player_number, pit_index, store_index):
@@ -173,7 +173,7 @@ class Mancala:
         :param pit_index:
         :return:
         """
-        return (f"\nThis pit is empty! Choose a different pit, Player {player_number}.")
+        return (f"This pit is empty! Choose a different pit, Player {player_number}.")
 
 
     # def skip_opponent_store(self, pit_index, store_index):
@@ -196,7 +196,7 @@ class Mancala:
 
         ##### NEEDS TO BE FIXED. IF PIT IS 0 IT DOES NOT WORK #########
         if pit_index > 6 or pit_index <= 0:
-            return "\nInvalid number for pit index"
+            return "Invalid number for pit index"
 
         # If one of the rows is zeroed out completely, return message that the game has ended.
         if self.if_row_zero(self._mancala_board[0:6]) or self.if_row_zero(self._mancala_board[7:13]):
@@ -303,13 +303,13 @@ class Mancala:
         # if self._mancala_board[1:7] and self._mancala_board[8:14] == 0:
         if self.if_row_zero(self._mancala_board[0:6]) or self.if_row_zero(self._mancala_board[7:13]):
             if self._mancala_board[self._player_1_store_index] > self._mancala_board[self._player_2_store_index]:
-                return "\nWinner is player 1: " + self._player_1
+                return "Winner is player 1: " + self._player_1
             elif self._mancala_board[self._player_1_store_index] < self._mancala_board[self._player_2_store_index]:
-                return "\nWinner is player 2: " + self._player_2
+                return "Winner is player 2: " + self._player_2
             elif self._mancala_board[self._player_1_store_index] == self._mancala_board[self._player_2_store_index]:
-                return "\nIt's a tie"
+                return "It's a tie"
         else:
-            return "\nGame has not ended"
+            return "Game has not ended"
 
 
 class Player:
