@@ -124,6 +124,25 @@ class Mancala:
         return pit_index
 
 
+    def end_game_store(self):
+        """FILL IN LATER"""
+
+        # Update an opponents store (whoever loses)
+        if self.if_row_zero(self._mancala_board[0:6]) or self.if_row_zero(self._mancala_board[7:13]):
+            for i in range(0, 6):
+                # Update Player Store (after game is over, player who lost)
+                self._mancala_board[self._player_1_store_index] += self._mancala_board[i]
+                # Set player pits to 0 (after game is over, player who lost)
+                self._mancala_board[i] = 0
+
+            for i in range(7, 13):
+                # Update Player Store (after game is over, player who lost)
+                self._mancala_board[self._player_2_store_index] += self._mancala_board[i]
+                # Set player pits to 0 (after game is over, player who lost)
+                self._mancala_board[i] = 0
+
+
+
     def steal_player_seeds(self, pit_index, store_index):
         """
 
@@ -208,6 +227,9 @@ class Mancala:
                 # Apply special rule number 1
                 if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
                     print("player 2 take another turn")
+
+        # Tally up any remaining pits once game is over and add to other player store.
+        self.end_game_store()
 
         return self._mancala_board
 
@@ -304,11 +326,11 @@ class Player:
 # print(game.play_game(1, 5))
 # print(game.play_game(1, 1))
 
-# game.play_game(1, 1)
-# game.play_game(1, 2)
-# game.play_game(1, 3)
-# game.play_game(1, 4)
-# game.play_game(1, 5)
-# game.play_game(1, 6)
+# print(game.play_game(1, 1))
+# print(game.play_game(1, 2))
+# print(game.play_game(1, 3))
+# print(game.play_game(1, 4))
+# print(game.play_game(1, 5))
+# print(game.play_game(1, 6))
 # game.print_board()
 # print(game.return_winner())
