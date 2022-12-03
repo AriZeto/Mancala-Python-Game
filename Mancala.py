@@ -144,20 +144,22 @@ class Mancala:
         seeds to the respective player store (and zeroing out the loser player pits).
         """
 
-        # Update an opponents store (whoever loses)
+        # Update the losing player store. Checks first if any player rows are zeroed out.
         if self.if_row_zero(self._mancala_board[0:6]) or self.if_row_zero(self._mancala_board[7:13]):
+
+            # Iterates over the player pits within the mancala board.
             for i in range(0, 6):
-                # Update Player Store (after game is over, player who lost)
+                # Update Player Store (after game is over, player who lost) by how many seeds within pit.
                 self._mancala_board[self._player_1_store_index] += self._mancala_board[i]
                 # Set player pits to 0 (after game is over, player who lost)
                 self._mancala_board[i] = 0
 
+            # Iterates over the player pits within the mancala board.
             for i in range(7, 13):
-                # Update Player Store (after game is over, player who lost)
+                # Update Player Store (after game is over, player who lost) by how many seeds within pit.
                 self._mancala_board[self._player_2_store_index] += self._mancala_board[i]
                 # Set player pits to 0 (after game is over, player who lost)
                 self._mancala_board[i] = 0
-
 
 
     def steal_player_seeds(self, pit_index, store_index):
