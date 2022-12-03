@@ -119,21 +119,22 @@ class Mancala:
             if pit_index != opponent_store_index:
                 amount_of_seeds -= 1
 
+                # If the amount of seeds in hand is 0, and the hand/pit we're looking over contains no pits;
+                # and the hand is not over either player store, add the 'last seed in hand' to player store as well
+                # as steal the seeds in the opposite pit (opposite player).
                 if amount_of_seeds == 0 and self._mancala_board[pit_index] == 0 and pit_index != self._player_1_store_index and pit_index != self._player_2_store_index:
 
+                    # Add seed to player store
+                    self._mancala_board[store_index] += 1
 
-                    # Add seed to indexed pits
-                    self._mancala_board[store_index] += 1         # test
-
-
-                    # print("store index value", self._mancala_board[store_index])
+                    # Steal the opposite pit
                     self.steal_player_seeds(pit_index, store_index)
 
-                    # print(self._mancala_board[store_index])
                 else:
-                    # Add seed to indexed pits
+                    # Otherwise, if the player hand contains seeds, distribute throughout the pit indexes.
                     self._mancala_board[pit_index] += 1
 
+        # Return positioned pit index.
         return pit_index
 
 
