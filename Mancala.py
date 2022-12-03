@@ -7,7 +7,7 @@
 # seed in every pit (and their own store, but not of the opposite players). The players have the ability to
 # steal opponent players seeds from an opposite player pit (as long as the pit they land on is their own and empty).
 # The objective of this game is to zero out an entire row of any player pits, and whomever player has the higher amount
-# of seeds in their 'store', wins!
+# of seeds in their 'store', wins.
 
 class Mancala:
     """
