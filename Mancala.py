@@ -11,14 +11,18 @@ class Mancala:
     def __init__(self):
         # Index 6 represents Player 1 Store, Index 13 represents Player 2 Store
         # Index 0 through 5 represents Player 1 Seeds, Index 7 through 12 represents Player 2 Seeds
-        # Each pit contains four seeds
-
+        # Each pit contains a default of four seeds, each store contains a default of 0 seeds.
         self._mancala_board = [4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0]
+
+        # Define player store indexes for easy access
         self._player_1_store_index = 6
         self._player_2_store_index = 13
-        # Player names
+
+        # Player names defaulted to the empty string, to be initialized.
         self._player_1 = ''
         self._player_2 = ''
+
+        # A dictionary containing the key's as the player pit index, values as opposite player pit index
         self._index_opposites = {
             # (Player 1) key is their pit, value is player 2 pit
             0:12,
@@ -40,11 +44,13 @@ class Mancala:
 
     def create_player(self, name):
         """
-        Takes as a parameter the name of the Player. Returns the player object.
+        Takes as a parameter the name of the Player and returns the player object.
         """
-        # Create Player Object, Return Player Object
+
+        # Create a Player object with parameter as their name.
         player_char = Player(name)
 
+        # As long as the player name is empty (which it will be), set player name to 'name' passed in and return object
         if self._player_1 == '':
             self._player_1 = name
         elif self._player_2 == '':
