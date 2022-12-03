@@ -233,13 +233,15 @@ class Mancala:
             # After the player has moved, and if Player 1, apply SPECIAL RULE 1 and grant another turn.
             if player_number == 1:
                 # Apply SPECIAL RULE 1, where if seed in hand is one and landing on their own store.
-                if self._mancala_board[landed_pit_index] == 1 and self._player_1_store_index == landed_pit_index:
+                # if self._mancala_board[landed_pit_index] == 1 and self._player_1_store_index == landed_pit_index:
+                if self._player_1_store_index == landed_pit_index:
                     print("player 1 take another turn")
 
             # After the player has moved, and if Player 2, apply SPECIAL RULE 1 and grant another turn.
             elif player_number == 2:
                 # Apply SPECIAL RULE 1, where if seed in hand is one and landing on their own store.
-                if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
+                # if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
+                if self._player_2_store_index == landed_pit_index:
                     print("player 2 take another turn")
 
         # Tally up any remaining pits once game is over and add to other player store.
