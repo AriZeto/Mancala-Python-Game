@@ -1,7 +1,12 @@
 # Author: Ari Zeto
 # GitHub username: AriZeto
 # Date: 12/3/2022
-# Description: Fill in Later!!! MISSING DECENT AMOUNT OF COMMENTS/DOCUMENTATION
+# Description: This program is a text input/output version of the game of 'Mancala'. The game consists of two players,
+# each with a set of six pits, all which start out with four seeds. Each player can make a move where they select a
+# non-empty pit, and the amount of seeds in that pit determines how many pits they move over, dropping a seed in every
+# pit (and their own store, but not of the opposite players). The players have the ability to steal opponent players
+# seeds from opposite pits (as long as the pit they land on is their own and empty). The objective of this game is to
+# zero out an entire row of any player pits, and whomever player has the highest amount of seeds in their 'store', wins.
 
 class Mancala:
     """
@@ -232,27 +237,26 @@ class Mancala:
 
             # After the player has moved, and if Player 1, apply SPECIAL RULE 1 and grant another turn.
             if player_number == 1:
-                # Apply SPECIAL RULE 1, where if seed in hand is one and landing on their own store.
-                # if self._mancala_board[landed_pit_index] == 1 and self._player_1_store_index == landed_pit_index:
+                # Apply SPECIAL RULE 1, where if player lands in their own store.
                 if self._player_1_store_index == landed_pit_index:
                     print("player 1 take another turn")
 
             # After the player has moved, and if Player 2, apply SPECIAL RULE 1 and grant another turn.
             elif player_number == 2:
-                # Apply SPECIAL RULE 1, where if seed in hand is one and landing on their own store.
-                # if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
+                # Apply SPECIAL RULE 1, where if player lands in their own store.
                 if self._player_2_store_index == landed_pit_index:
                     print("player 2 take another turn")
 
-        # Tally up any remaining pits once game is over and add to other player store.
+        # Tally up any remaining pits once game is over and add to losing player store.
         self.end_game_store()
 
+        # Return the Mancala board.
         return self._mancala_board
 
 
     def if_row_zero(self, list_slice):
         """
-        Helper function to 'return_winner'. Takes a slice of a list of the mancala board data member. Returns True
+        Helper function to 'return_winner()'. Takes a slice of a list of the mancala board data member. Returns True
         if the row values of that list are 0, False otherwise.
         """
         for pit in list_slice:
@@ -263,7 +267,8 @@ class Mancala:
 
     def return_winner(self):
         """
-        Takes no parameters. Returns the winner.
+        Takes no parameters. Returns the winning player, otherwise the game status such as if it is a tie, or if the
+        game has not yet ended.
         """
         # Checks and compares index 0 and 7 (Mancala stores for Player 1 and Player 2) to see who has larger amount
         # Also checks if one of the player rows is empty.
@@ -281,7 +286,7 @@ class Mancala:
 
 class Player:
     """
-    A class representing the Player. Contains the characteristic of the Player 1 or 2's name.
+    A class representing the Player. Contains the characteristic of the Player 1 or Player 2's name.
     """
     def __init__(self, name):
         self._name = name
