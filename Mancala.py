@@ -130,10 +130,10 @@ class Mancala:
                 # as steal the seeds in the opposite pit (opposite player).
                 if amount_of_seeds == 0 and self._mancala_board[pit_index] == 0 and pit_index != self._player_1_store_index and pit_index != self._player_2_store_index:
 
-                    # Add seed to player store
+                    # Add seed to player store, part of SPECIAL RULE 2 (incrementing player store by 1)
                     self._mancala_board[store_index] += 1
 
-                    # Steal the opposite pit
+                    # Steal the opposite pit, part of SPECIAL RULE 2 (steal opposite pit, add to player store)
                     self.steal_player_seeds(pit_index, store_index)
 
                 else:
