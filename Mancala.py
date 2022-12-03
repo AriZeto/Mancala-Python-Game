@@ -83,28 +83,35 @@ class Mancala:
         Takes as a parameter a particular indexed pit value of the Mancala Board array to 'grab' the amount of seeds
         within a particular pit. Returns the amount of seeds from that pit.
         """
-        # Grab the amount of seeds from the array position that contains pits.
+
+        # To grab the amount of seeds from a pit index, use the pit index within the mancala board array, such that
+        # it contains the 'amount' of seeds from that particular pit. Set to variable and return that amount.
         grab_seed_from_pit = self._mancala_board[pit_index]
 
-        # Set the pit the user is picking the seeds up from to zero
+        # Now, once the seeds have been picked up from that particular pit, set it equal to 0 such that the pit is empty.
         self._mancala_board[pit_index] = 0
 
+        # Return the grabbed amount of seeds from that pit.
         return grab_seed_from_pit
 
 
     def move_seed_per_pit(self, pit_index, store_index, opponent_store_index):
         """
-        Distributes/drops a seed per each index pass of the Mancala board array.
+        Takes as parameters the pit index, the store index, and the opponent store index. These parameters are used
+        such that the seeds can be distributed to the players pits, their own store, but skipping the opponent store.
         """
-        # Grabs the amount of seeds from a pit.
+
+        # Use the prior defined 'grab_seeds()' method and pass in the pit index to grab the amount of seeds from
+        # the players chosen pit.
         amount_of_seeds = self.grab_seeds(pit_index)
 
-        # Loop through the Mancala Board Array after final element
+        # As long as the seeds is greater than zero, loop through the Mancala board.
         while amount_of_seeds > 0:
-
+            # Go back to beginning of the board if going past final mancala pit spot by setting pit index to 0.
             if pit_index >= 13:
                 pit_index = 0
             else:
+                # Otherwise, increment/move the pit index to go around the board.
                 pit_index += 1
 
             ####### FIX THIS ##############
