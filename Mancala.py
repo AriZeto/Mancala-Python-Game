@@ -28,7 +28,7 @@ class Mancala:
         self._player_1 = ''
         self._player_2 = ''
 
-        # A dictionary containing the key's as the player pit index, values as opposite player pit index
+        # A dictionary containing the keys as the player pit index, values as opposite player pit index
         self._index_opposites = {
             # (Player 1) key is their pit, value is player 2 pit
             0:12,
@@ -86,7 +86,7 @@ class Mancala:
 
     def grab_seeds(self, pit_index):
         """
-        Takes as a parameter a particular indexed pit value of the Mancala Board array to 'grab' the amount of seeds
+        Takes as a parameter a particular pit index of the Mancala Board array to 'grab' the amount of seeds
         within a particular pit. Returns the amount of seeds from that pit.
         """
 
@@ -125,7 +125,7 @@ class Mancala:
             if pit_index != opponent_store_index:
                 amount_of_seeds -= 1
 
-                # If the amount of seeds in hand is 0, and the hand/pit we're looking over contains no pits;
+                # If the amount of seeds in hand is 0, and the pit we're looking over contains no seeds;
                 # and the hand is not over either player store, add the 'last seed in hand' to player store as well
                 # as steal the seeds in the opposite pit (opposite player).
                 if amount_of_seeds == 0 and self._mancala_board[pit_index] == 0 and pit_index != self._player_1_store_index and pit_index != self._player_2_store_index:
