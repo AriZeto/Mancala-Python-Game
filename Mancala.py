@@ -2,11 +2,12 @@
 # GitHub username: AriZeto
 # Date: 12/3/2022
 # Description: This program is a text input/output version of the game of 'Mancala'. The game consists of two players,
-# each with a set of six pits, all which start out with four seeds. Each player can make a move where they select a
-# non-empty pit, and the amount of seeds in that pit determines how many pits they move over, dropping a seed in every
-# pit (and their own store, but not of the opposite players). The players have the ability to steal opponent players
-# seeds from opposite pits (as long as the pit they land on is their own and empty). The objective of this game is to
-# zero out an entire row of any player pits, and whomever player has the highest amount of seeds in their 'store', wins.
+# each with a row of six pits, all which start out with four seeds. Each player can make a move where they select a
+# non-empty pit of their own, and the amount of seeds in that pit determines how many pits they move over, dropping a
+# seed in every pit (and their own store, but not of the opposite players). The players have the ability to
+# steal opponent players seeds from an opposite player pit (as long as the pit they land on is their own and empty).
+# The objective of this game is to zero out an entire row of any player pits, and whomever player has the higher amount
+# of seeds in their 'store', wins.
 
 class Mancala:
     """
