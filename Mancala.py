@@ -195,48 +195,50 @@ class Mancala:
         if pit_index > 6 or pit_index <= 0:
             return "Invalid number for pit index"
 
-        # If one of the rows is zeroed out completely, return message that the game has ended.
+        # If one of the player rows is zeroed out completely, return message that the game has ended.
         if self.if_row_zero(self._mancala_board[0:6]) or self.if_row_zero(self._mancala_board[7:13]):
             return "Game is ended"
 
-        # Gather the number of seeds
+        # As long as the pit index is appropriate, begin running the game.
         if pit_index >= 1 and pit_index <= 6:
 
             # Player 1
             if player_number == 1:
-                # Subtract from index to get appropriate pit index
+                # Subtract 1 from pit index to get appropriate pit position (since we have to work with Mancala Board
+                # index position including their stores).
                 pit_index -= 1
 
-                # If Pit contains no seeds
+                # If Pit contains no seeds, remind the player that the pit chosen is empty.
                 if self._mancala_board[pit_index] == 0:
                     return self.remind_pit_empty(player_number)
 
-                # num_of_seeds = self._mancala_board[pit_index]
-
-                # Distribute them across each move
+                # Otherwise, distribute the seeds across each respective pit/player store by using the
+                # 'move_seed_per_pit' method defined earlier, pass in appropriate store indexes. Set as 'landed_pit_index'.
                 landed_pit_index = self.move_seed_per_pit(pit_index, self._player_1_store_index, self._player_2_store_index)
-
 
             # Player 2
             if player_number == 2:
-                # Add seven (six?) to get appropriate pit index
+                # Add 6 to pit index to get appropriate pit position (since we have to work with Mancala Board index
+                # position including their stores/get to side of board for this player).
                 pit_index += 6
 
-                # If Pit contains no seeds
+                # If Pit contains no seeds, remind the player that the pit chosen is empty.
                 if self._mancala_board[pit_index] == 0:
                     return self.remind_pit_empty(player_number)
 
-                # Distribute them across each move
+                # Otherwise, distribute the seeds across each respective pit/player store by using the
+                # 'move_seed_per_pit' method defined earlier, pass in appropriate store indexes. Set as 'landed_pit_index'.
                 landed_pit_index = self.move_seed_per_pit(pit_index, self._player_2_store_index, self._player_1_store_index)
 
-
+            # After the player has moved, and if Player 1, apply SPECIAL RULE 1 and grant another turn.
             if player_number == 1:
-                # Apply special rule number 1
+                # Apply SPECIAL RULE 1, where if seed in hand is one and landing on their own store.
                 if self._mancala_board[landed_pit_index] == 1 and self._player_1_store_index == landed_pit_index:
                     print("player 1 take another turn")
 
+            # After the player has moved, and if Player 2, apply SPECIAL RULE 1 and grant another turn.
             elif player_number == 2:
-                # Apply special rule number 1
+                # Apply SPECIAL RULE 1, where if seed in hand is one and landing on their own store.
                 if self._mancala_board[landed_pit_index] == 1 and self._player_2_store_index == landed_pit_index:
                     print("player 2 take another turn")
 
