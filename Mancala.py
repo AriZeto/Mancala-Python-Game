@@ -1,19 +1,18 @@
 # Author: Ari Zeto
 # GitHub username: AriZeto
-# Date: 11/30/2022
+# Date: 12/3/2022
 # Description: Fill in Later!!! MISSING DECENT AMOUNT OF COMMENTS/DOCUMENTATION
 
 class Mancala:
     """
-    Class representing the board game dubbed 'Mancala'. Contains information regarding the Board status as well as
-    information regarding player names.
+    Class representing the board game dubbed 'Mancala'. Contains information regarding the board, such as the player
+    pits, their store, as well as opposite pit indexes.
     """
     def __init__(self):
         # Index 6 represents Player 1 Store, Index 13 represents Player 2 Store
         # Index 0 through 5 represents Player 1 Seeds, Index 7 through 12 represents Player 2 Seeds
         # Each pit contains four seeds
 
-        ########### INDEX SPORE FOR PLAYER 2 NOT WORKING #####################
         self._mancala_board = [4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0]
         self._player_1_store_index = 6
         self._player_2_store_index = 13
