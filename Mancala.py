@@ -114,9 +114,9 @@ class Mancala:
                 # Otherwise, increment/move the pit index to go around the board.
                 pit_index += 1
 
-            ####### FIX THIS ##############
+            # As long as pit index is not the opposite players store, to distribute the seeds we decrement the amount
+            # by one.
             if pit_index != opponent_store_index:
-                # Decrease amount of seeds by one per each pit
                 amount_of_seeds -= 1
 
                 if amount_of_seeds == 0 and self._mancala_board[pit_index] == 0 and pit_index != self._player_1_store_index and pit_index != self._player_2_store_index:
