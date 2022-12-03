@@ -61,7 +61,8 @@ class Mancala:
     def print_board(self):
         """
         Contains no parameters. Prints specific formatted board information, such as the status of each
-        player, their turns, and the data of the mancala board array itself.
+        player, such as how many seeds are in their store, as well as the seeds in their pits. Returns the method
+        'return_winner()' which indicates the status of the game.
         """
         # Returns the status of Player 1
         print("player1:")
@@ -73,14 +74,14 @@ class Mancala:
         print("store: " + str(self._mancala_board[self._player_2_store_index]))
         print(str(self._mancala_board[7:13]))
 
-        # Return the winner
+        # Returns the winner or the status of the game.
         return self.return_winner()
 
 
     def grab_seeds(self, pit_index):
         """
-        Takes as a parameter the indexed value of the Mancala Board for the specified Pit the user chooses.
-        Gathers the amount of seeds from the specified indexed pit. Returns the amount of seeds from the pit.
+        Takes as a parameter a particular indexed pit value of the Mancala Board array to 'grab' the amount of seeds
+        within a particular pit. Returns the amount of seeds from that pit.
         """
         # Grab the amount of seeds from the array position that contains pits.
         grab_seed_from_pit = self._mancala_board[pit_index]
