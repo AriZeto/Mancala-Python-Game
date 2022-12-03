@@ -99,7 +99,7 @@ class Mancala:
         """
         Takes as parameters the pit index, the store index, and the opponent store index. These parameters are used
         such that the seeds can be distributed to the players pits, their own store, but skipping the opponent store.
-        """
+        Returns the positioned pit index."""
 
         # Use the prior defined 'grab_seeds()' method and pass in the pit index to grab the amount of seeds from
         # the players chosen pit.
@@ -139,7 +139,10 @@ class Mancala:
 
 
     def end_game_store(self):
-        """FILL IN LATER"""
+        """
+        Takes no parameters. Once the game is over, this method updates the losing players store by allocating remaining
+        seeds to the respective player store (and zeroing out the loser player pits).
+        """
 
         # Update an opponents store (whoever loses)
         if self.if_row_zero(self._mancala_board[0:6]) or self.if_row_zero(self._mancala_board[7:13]):
