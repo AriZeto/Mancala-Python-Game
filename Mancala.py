@@ -164,41 +164,34 @@ class Mancala:
 
     def steal_player_seeds(self, pit_index, store_index):
         """
-
-        :param store_index:
-        :param pit_index:
-        :return:
+        Takes as parameters the pit index and player store index. Increments the player store index by the
+        opposite player pit by stealing the seeds in that pit as well as setting that pit to zero.
+        Knows the opposite pit by using a dictionary where key:value pairs represent 'pit:opposite pits'.
         """
+
+        # Increment the player store by incrementing it by the opposite player pit.
+        # Notice that the dict. 'index_opposites' is used where the key is the pit index, value is opposite pit,
+        # Used such that the player store index is incremented by that value.
         self._mancala_board[store_index] += self._mancala_board[self._index_opposites[pit_index]]
+        # Sets that value of the opposite pit to zero since the seeds in that pit has been stolen.
         self._mancala_board[self._index_opposites[pit_index]] = 0
 
 
-        # Return something here
-        # return store_index
-
-
-    # def take_another_turn(self, player_number):
-    #     """
-    #     When the last seed in the hand lands in your own store, take another turn.
-    #     """
-    #     print(f"player {player_number} takes another turn")
-
-
-    def set_indexed_pit_to_0(self, player_number):
+    def remind_pit_empty(self, player_number):
         """
-        Sets the chosen pit to zero after selecting it to move across the board.
-        :param pit_index:
-        :return:
+        Takes as parameter the player number. A simple function that tells the player if a pit is empty.
         """
         return (f"This pit is empty! Choose a different pit, Player {player_number}.")
 
 
     def play_game(self, player_number, pit_index):
         """
-        Player moves seeds across the board.
+        Takes as parameters the player number and the pit index. This method utilizes a variety of helper/methods
+        such that the player can move across the board, steal seeds, determine if the game is over, and distributed
+        seeds across the board. Returns the Mancala PLayer board.
         """
 
-
+        # Checks if the pit index passed in is appropriate. Returns error message.
         if pit_index > 6 or pit_index <= 0:
             return "Invalid number for pit index"
 
@@ -216,7 +209,7 @@ class Mancala:
 
                 # If Pit contains no seeds
                 if self._mancala_board[pit_index] == 0:
-                    return self.set_indexed_pit_to_0(player_number)
+                    return self.remind_pit_empty(player_number)
 
                 # num_of_seeds = self._mancala_board[pit_index]
 
@@ -231,7 +224,7 @@ class Mancala:
 
                 # If Pit contains no seeds
                 if self._mancala_board[pit_index] == 0:
-                    return self.set_indexed_pit_to_0(player_number)
+                    return self.remind_pit_empty(player_number)
 
                 # Distribute them across each move
                 landed_pit_index = self.move_seed_per_pit(pit_index, self._player_2_store_index, self._player_1_store_index)
